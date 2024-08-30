@@ -15,19 +15,44 @@ const LoanForm = () => {
   // State for errors
   const [errors, setErrors] = useState({});
 
+  // Validate a single field
+  const validateField = (id, value) => {
+    let error;
+    switch (id) {
+      case "name":
+        error = value ? "" : "Name is required.";
+        break;
+      case "mobile":
+        // Check for exactly 10 digits
+        error = value.length === 10 && /^\d+$/.test(value)
+          ? ""
+          : "Mobile number must be exactly 10 digits.";
+        break;
+      case "gender":
+        error = value ? "" : "Gender is required.";
+        break;
+      case "email":
+        error = value ? "" : "Email is required.";
+        break;
+      default:
+        break;
+    }
+    setErrors(prevErrors => ({ ...prevErrors, [id]: error }));
+  };
+
   // Handle input change
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    setFormData(prevFormData => ({ ...prevFormData, [id]: value }));
+    validateField(id, value); // Validate field on change
   };
 
-  // Validate form fields
+  // Validate all fields before submission
   const validate = () => {
-    let newErrors = {};
-    if (!formData.name) newErrors.name = "Name is required.";
-    if (!formData.mobile) newErrors.mobile = "Mobile number is required.";
-    if (!formData.gender) newErrors.gender = "Gender is required.";
-    if (!formData.email) newErrors.email = "Email is required.";
+    const newErrors = {};
+    Object.keys(formData).forEach(field => {
+      validateField(field, formData[field]);
+    });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -42,7 +67,7 @@ const LoanForm = () => {
   };
 
   return (
-    <div className=" max-w-[90vw] mx-auto flex flex-wrap justify-center gap-6 my-10">
+    <div className="max-w-[90vw] mx-auto flex flex-wrap justify-center gap-6 my-10">
       {/* Form Section */}
       <section className="min-w-[300px] w-[45%] p-6 bg-white border rounded-md shadow-lg">
         <h2 className="text-lg font-semibold text-gray-700 capitalize">
