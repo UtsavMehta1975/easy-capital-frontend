@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HomeComponents/HeroSection";
 import HowItWorks from "@/components/HomeComponents/HowItWorks";
+import LoanCalculator from "@/components/HomeComponents/LoanCalculator";
 import OfferingsSection from "@/components/HomeComponents/OfferingsSection";
 import Partners from "@/components/HomeComponents/Partners";
 import WhyEasyCapital from "@/components/HomeComponents/WhyEasyCapital";
@@ -10,6 +11,7 @@ export default function Home() {
     <main className="min-h-screen max-w-[100vw] overflow-x-hidden ">
       <HeroSection />
       <OfferingsSection />
+      <LoanCalculator />
       <HowItWorks />
       <WhyEasyCapital />
       <Partners />
