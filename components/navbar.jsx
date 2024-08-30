@@ -1,5 +1,6 @@
 "use client"
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { FiMenu } from 'react-icons/fi';
 
@@ -54,16 +55,18 @@ const Navbar = () => {
                     <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none">
                         <FiMenu size={24} />
                     </span>
-                    <div className="md:ml-3 flex gap-1 items-center">
-                        <Image
-                            className="h-12 w-auto"
-                            src="/images/easy-capital-logo.png"
-                            alt="EasyCapital Logo"
-                            width={50}
-                            height={50}
-                        />
-                        <span className="text-2xl font-bold text-gray-800"><span className='text-blue-800'>Easy</span>Capital</span>
-                    </div>
+                    <Link href={'/'}>
+                        <div className="md:ml-3 flex gap-1 items-center">
+                            <Image
+                                className="h-12 w-auto"
+                                src="/images/easy-capital-logo.png"
+                                alt="EasyCapital Logo"
+                                width={50}
+                                height={50}
+                            />
+                            <span className="text-2xl font-bold text-gray-800"><span className='text-blue-800'>Easy</span>Capital</span>
+                        </div>
+                    </Link>
                 </div>
 
                 {/* Links - hidden on mobile */}
@@ -93,22 +96,24 @@ const Navbar = () => {
                         <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none">
                             <FiMenu size={24} />
                         </span>
-                        <div className="hidden md:flex md:ml-3 gap-1 items-center">
-                            <Image
-                                className="h-12 w-auto"
-                                src="/images/easy-capital-logo.png"
-                                alt="EasyCapital Logo"
-                                width={50}
-                                height={50}
-                            />
-                            <span className="text-2xl font-bold text-gray-800"><span className='text-blue-800'>Easy</span>Capital</span>
-                        </div>
+                        <Link href={'/'}>
+                            <div className="hidden md:flex md:ml-3 gap-1 items-center">
+                                <Image
+                                    className="h-12 w-auto"
+                                    src="/images/easy-capital-logo.png"
+                                    alt="EasyCapital Logo"
+                                    width={50}
+                                    height={50}
+                                />
+                                <span className="text-2xl font-bold text-gray-800"><span className='text-blue-800'>Easy</span>Capital</span>
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <div className="px-4 py-6">
                     <ul className="space-y-4 text-left">
                         <li>
-                            <a href="#" className="text-gray-800 hover:text-blue-500 block">Home</a>
+                            <Link href="/" className="text-gray-800 hover:text-blue-500 block">Home</Link>
                         </li>
 
                         {/* Business Loan Dropdown */}
