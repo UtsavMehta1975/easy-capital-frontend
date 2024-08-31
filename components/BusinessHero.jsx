@@ -5,9 +5,9 @@ import Link from 'next/link';
 const BusinessHero = ({ title, description, imageUrl }) => {
   return (
     <div className="container px-6 py-16 mx-auto">
-      <div className="items-center lg:flex">
+      <div className="items-center flex flex-col-reverse md:flex-row gap-4">
         <div className="w-full lg:w-1/2">
-          <div className="lg:max-w-lg">
+          <div className="lg:max-w-lg text-center md:text-left">
             <h1 className="text-3xl font-semibold text-black lg:text-4xl">
               {title}
             </h1>
