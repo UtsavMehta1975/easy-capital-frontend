@@ -1,6 +1,6 @@
 import HeroSection from "@/components/HomeComponents/HeroSection";
 import HowItWorks from "@/components/HomeComponents/HowItWorks";
-import LoanCalculator from "@/components/HomeComponents/LoanCalculator";
+import LoanCalculator from "@/components/LoanCalculator";
 import OfferingsSection from "@/components/HomeComponents/OfferingsSection";
 import Partners from "@/components/HomeComponents/Partners";
 import WhyEasyCapital from "@/components/HomeComponents/WhyEasyCapital";

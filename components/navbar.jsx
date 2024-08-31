@@ -90,7 +90,7 @@ const Navbar = () => {
                 className={`fixed top-0 right-0 md:left-0 h-full bg-white shadow-lg transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full md:-translate-x-full'
                     } z-30 lg:w-64 w-64`}
             >
-                <div className="flex items-center justify-between px-4 py-4">
+                <div className="flex items-center justify-between px-4 py-4 ">
                     {/* Sidebar Menu Icon + Logo */}
                     <div className="flex items-center md:w-auto w-full justify-between flex-row-reverse md:flex-row">
                         <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none">
@@ -111,7 +111,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="px-4 py-6">
-                    <ul className="space-y-4 text-left">
+                    <ul className="space-y-4 text-left max-h-[600px] overflow-auto">
                         <li>
                             <Link href="/" className="text-gray-800 hover:text-blue-500 block">Home</Link>
                         </li>
@@ -124,25 +124,55 @@ const Navbar = () => {
                             </div>
                             <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${businessLoanDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Unsecured Business Loan</a>
+                                    <Link href="/business-loan/unsecured-business-loan" className="text-gray-800 hover:text-blue-500 block">
+                                        <span onClick={toggleSidebar} >
+                                            Unsecured Business Loan
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Line Of Credit</a>
+                                    <Link href="/business-loan/line-of-credit" className="text-gray-800 hover:text-blue-500 block">
+                                        <span onClick={toggleSidebar} >
+                                            Line Of Credit
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">MSME Loan</a>
+                                    <Link href="/business-loan/msme-loan" className="text-gray-800 hover:text-blue-500 block">
+                                        <span onClick={toggleSidebar} >
+                                            MSME Loan
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Secured Business Loan</a>
+                                    <Link href="/business-loan/secured-business-loan" className="text-gray-800 hover:text-blue-500 block">
+                                        <span onClick={toggleSidebar} >
+                                            Secured Business Loan
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Machinery Loan</a>
+                                    <Link href="/business-loan/machinery-loan" className="text-gray-800 hover:text-blue-500 block">
+                                        <span onClick={toggleSidebar} >
+                                            Machinery Loan
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Business Loan for Women</a>
+                                    <Link href="/business-loan/business-loan-for-women" className="text-gray-800 hover:text-blue-500 block">
+                                        <span onClick={toggleSidebar} >
+                                            Business Loan for Women
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Business E-Commerce Loan</a>
+                                    <Link href="/business-loan/business-e-commerce-loan" className="text-gray-800 hover:text-blue-500 block">
+
+                                        <span onClick={toggleSidebar} >
+                                            Business E-Commerce Loan
+
+                                        </span>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
