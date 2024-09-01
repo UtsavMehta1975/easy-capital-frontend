@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { FaEnvelope, FaIdCard, FaBusinessTime, FaUserCheck, FaFileSignature, FaMoneyBillWave } from "react-icons/fa";
+import { FaPhone, FaUserCheck, FaHandshake, FaMoneyCheck } from "react-icons/fa";
 
 const LoanForm = () => {
   // State for all form fields
@@ -23,10 +23,10 @@ const LoanForm = () => {
         error = value ? "" : "Name is required.";
         break;
       case "mobile":
-        // Check for exactly 10 digits
-        error = value.length === 10 && /^\d+$/.test(value)
-          ? ""
-          : "Mobile number must be exactly 10 digits.";
+        error =
+          value.length === 10 && /^\d+$/.test(value)
+            ? ""
+            : "Mobile number must be exactly 10 digits.";
         break;
       case "gender":
         error = value ? "" : "Gender is required.";
@@ -37,20 +37,20 @@ const LoanForm = () => {
       default:
         break;
     }
-    setErrors(prevErrors => ({ ...prevErrors, [id]: error }));
+    setErrors((prevErrors) => ({ ...prevErrors, [id]: error }));
   };
 
   // Handle input change
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData(prevFormData => ({ ...prevFormData, [id]: value }));
+    setFormData((prevFormData) => ({ ...prevFormData, [id]: value }));
     validateField(id, value); // Validate field on change
   };
 
   // Validate all fields before submission
   const validate = () => {
     const newErrors = {};
-    Object.keys(formData).forEach(field => {
+    Object.keys(formData).forEach((field) => {
       validateField(field, formData[field]);
     });
     setErrors(newErrors);
@@ -218,20 +218,16 @@ const LoanForm = () => {
             <span className="text-md font-semibold">Basic Details</span>
           </div>
           <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaEnvelope className="text-green-500" />
-            <span className="text-md font-semibold">Email Verification</span>
+            <FaPhone className="text-green-500" />
+            <span className="text-md font-semibold">OTP Verification</span>
           </div>
           <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaIdCard className="text-purple-500" />
-            <span className="text-md font-semibold">PAN Verification</span>
+            <FaHandshake className="text-purple-500" />
+            <span className="text-md font-semibold">We Match the Right Lender</span>
           </div>
           <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaFileSignature className="text-yellow-500" />
-            <span className="text-md font-semibold">Business Details</span>
-          </div>
-          <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaMoneyBillWave className="text-red-500" />
-            <span className="text-md font-semibold">Disbursal</span>
+            <FaMoneyCheck className="text-red-500" />
+            <span className="text-md font-semibold">Money Credit in 2-3 Days</span>
           </div>
         </div>
       </section>
