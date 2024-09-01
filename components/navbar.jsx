@@ -1,4 +1,5 @@
 "use client"
+import { NavLoanContent } from '@/data/loanContent';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
@@ -123,57 +124,15 @@ const Navbar = () => {
                                 <span className={`transform transition-transform ${businessLoanDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                             </div>
                             <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${businessLoanDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
-                                <li>
-                                    <Link href="/business-loan/unsecured-business-loan" className="text-gray-800 hover:text-blue-500 block">
-                                        <span onClick={toggleSidebar} >
-                                            Unsecured Business Loan
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/business-loan/line-of-credit" className="text-gray-800 hover:text-blue-500 block">
-                                        <span onClick={toggleSidebar} >
-                                            Line Of Credit
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/business-loan/msme-loan" className="text-gray-800 hover:text-blue-500 block">
-                                        <span onClick={toggleSidebar} >
-                                            MSME Loan
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/business-loan/secured-business-loan" className="text-gray-800 hover:text-blue-500 block">
-                                        <span onClick={toggleSidebar} >
-                                            Secured Business Loan
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/business-loan/machinery-loan" className="text-gray-800 hover:text-blue-500 block">
-                                        <span onClick={toggleSidebar} >
-                                            Machinery Loan
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/business-loan/business-loan-for-women" className="text-gray-800 hover:text-blue-500 block">
-                                        <span onClick={toggleSidebar} >
-                                            Business Loan for Women
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/business-loan/business-e-commerce-loan" className="text-gray-800 hover:text-blue-500 block">
-
-                                        <span onClick={toggleSidebar} >
-                                            Business E-Commerce Loan
-
-                                        </span>
-                                    </Link>
-                                </li>
+                                {Object.entries(NavLoanContent).map(([key, { title, link }]) => (
+                                    <li key={key}>
+                                        <Link href={link} className="text-gray-800 hover:text-blue-500 block">
+                                            <span onClick={toggleSidebar} >
+                                                {title}
+                                            </span>
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </li>
 
