@@ -5,6 +5,7 @@ import OfferingsSection from "@/components/HomeComponents/OfferingsSection";
 import Partners from "@/components/HomeComponents/Partners";
 import WhyEasyCapital from "@/components/HomeComponents/WhyEasyCapital";
 import Image from "next/image";
+import FAQSection from "@/components/FAQSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <LoanCalculator />
       <HowItWorks />
       <WhyEasyCapital />
+      <FAQSection />
       <Partners />
     </main>
   );
