@@ -1,238 +1,108 @@
 "use client";
+import AccountInfoForm from "@/components/ApplyComponents/AccountInfoForm";
+import ApplyFlowchart from "@/components/ApplyComponents/ApplyFlowchart";
+import BasicDetailsForm from "@/components/ApplyComponents/BasicDetailsForm";
+import OTPVerification from "@/components/ApplyComponents/OTPVerification"; // Import OTPVerification component
+import SuccessMessage from "@/components/ApplyComponents/SuccessMessage";
 import React, { useState } from "react";
-import { FaPhone, FaUserCheck, FaHandshake, FaMoneyCheck } from "react-icons/fa";
 
-const LoanForm = () => {
-  // State for all form fields
-  const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    gender: "",
-    email: "",
-    loanAmount: 50000,
-  });
+const ApplyPage = () => {
+  const [step, setStep] = useState(1);
 
-  // State for errors
-  const [errors, setErrors] = useState({});
+  const nextStep = () => {
+    setStep(step + 1)
+  }
 
-  // Validate a single field
-  const validateField = (id, value) => {
-    let error;
-    switch (id) {
-      case "name":
-        error = value ? "" : "Name is required.";
-        break;
-      case "mobile":
-        error =
-          value.length === 10 && /^\d+$/.test(value)
-            ? ""
-            : "Mobile number must be exactly 10 digits.";
-        break;
-      case "gender":
-        error = value ? "" : "Gender is required.";
-        break;
-      case "email":
-        error = value ? "" : "Email is required.";
-        break;
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return <BasicDetailsForm nextStep={nextStep} />;
+      case 2:
+        return <OTPVerification nextStep={nextStep} />;
+      case 3:
+        return <AccountInfoForm nextStep={nextStep} />;
+      case 4:
+        return <SuccessMessage />;
       default:
-        break;
-    }
-    setErrors((prevErrors) => ({ ...prevErrors, [id]: error }));
-  };
-
-  // Handle input change
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [id]: value }));
-    validateField(id, value); // Validate field on change
-  };
-
-  // Validate all fields before submission
-  const validate = () => {
-    const newErrors = {};
-    Object.keys(formData).forEach((field) => {
-      validateField(field, formData[field]);
-    });
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log("Form submitted:", formData);
-      // Send formData to backend
+        return <BasicDetailsForm />;
     }
   };
 
   return (
     <div className="max-w-[90vw] mx-auto flex flex-wrap justify-center gap-6 my-10">
-      {/* Form Section */}
-      <section className="min-w-[300px] w-[45%] p-6 bg-white border rounded-md shadow-lg">
-        <h2 className="text-lg font-semibold text-gray-700 capitalize">
-          Let’s start by filling in some basic details:
-        </h2>
+      {/* Stepper Component */}
+      <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+        <li
+          className={`flex md:w-full items-center ${step >= 1 ? "text-blue-600 dark:text-blue-500" : ""
+            } sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700`}
+        >
+          <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
 
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-6 mt-4">
-            {/* Name Input */}
-            <div>
-              <label className="block text-sm text-gray-500" htmlFor="name">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                  errors.name
-                    ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                    : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-                }`}
-              />
-              {errors.name && (
-                <p className="mt-2 text-xs text-red-400">{errors.name}</p>
-              )}
-            </div>
-
-            {/* Mobile Input */}
-            <div>
-              <label className="block text-sm text-gray-500" htmlFor="mobile">
-                Mobile
-              </label>
-              <input
-                id="mobile"
-                type="tel"
-                placeholder="9876543210"
-                value={formData.mobile}
-                onChange={handleChange}
-                required
-                className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                  errors.mobile
-                    ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                    : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-                }`}
-              />
-              {errors.mobile && (
-                <p className="mt-2 text-xs text-red-400">{errors.mobile}</p>
-              )}
-            </div>
-
-            {/* Gender Input */}
-            <div>
-              <label className="block text-sm text-gray-500" htmlFor="gender">
-                Gender
-              </label>
-              <select
-                id="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                required
-                className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                  errors.gender
-                    ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                    : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-                }`}
-              >
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-              {errors.gender && (
-                <p className="mt-2 text-xs text-red-400">{errors.gender}</p>
-              )}
-            </div>
-
-            {/* Email Input */}
-            <div>
-              <label className="block text-sm text-gray-500" htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="johndoe@example.com"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                  errors.email
-                    ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                    : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-                }`}
-              />
-              {errors.email && (
-                <p className="mt-2 text-xs text-red-400">{errors.email}</p>
-              )}
-            </div>
-
-            {/* Loan Amount Input */}
-            <div>
-              <label
-                className="block text-sm text-gray-500"
-                htmlFor="loanAmount"
-              >
-                Loan Amount
-              </label>
-              <input
-                id="loanAmount"
-                type="range"
-                min="50000"
-                max="1000000"
-                value={formData.loanAmount}
-                onChange={handleChange}
-                className="w-full h-2 mt-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-              />
-              <span className="block mt-2 text-gray-700">
-                ₹{Number(formData.loanAmount).toLocaleString()}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex justify-end mt-6">
-            <button
-              type="submit"
-              className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            {step > 1 ? (<svg
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              Apply
-            </button>
-          </div>
-        </form>
-      </section>
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>) :
+              (<span className="me-2">1.</span>)
+            }
+            Personal <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+          </span>
+        </li>
+        <li
+          className={`flex md:w-full items-center ${step >= 2 ? "text-blue-600 dark:text-blue-500" : ""
+            } after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700`}
+        >
+          <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+          {step > 2 ? (<svg
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>) :
+              (<span className="me-2">2.</span>)
+            }
+            OTP <span className="hidden sm:inline-flex sm:ms-2">Verification</span>
+          </span>
+        </li>
+        <li
+          className={`flex md:w-full items-center ${step >= 3 ? "text-blue-600 dark:text-blue-500" : ""
+            } after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700`}
+        >
+          <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+          {step > 3 ? (<svg
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>) :
+              (<span className="me-2">3.</span>)
+            }
+            Account <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+          </span>
+        </li>
+        <li
+          className={`flex items-center ${step >= 4 ? "text-blue-600 dark:text-blue-500" : ""
+            }`}
+        >
+          <span className="me-2">4.</span>
+          Done
+        </li>
+      </ol>
 
-      {/* Flowchart Section */}
-      <section className="min-w-[300px] w-[40%] flex flex-col items-center justify-center p-6 bg-gray-50 border rounded-md shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Steps Ahead</h2>
-        <p className="text-center text-sm mb-6">
-          In order to receive the loan amount, you will need to successfully complete these steps.
-        </p>
-
-        <div className="space-y-4">
-          <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaUserCheck className="text-blue-500" />
-            <span className="text-md font-semibold">Basic Details</span>
-          </div>
-          <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaPhone className="text-green-500" />
-            <span className="text-md font-semibold">OTP Verification</span>
-          </div>
-          <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaHandshake className="text-purple-500" />
-            <span className="text-md font-semibold">We Match the Right Lender</span>
-          </div>
-          <div className="flowchart-card flex items-center space-x-4 p-4 bg-white rounded-lg border">
-            <FaMoneyCheck className="text-red-500" />
-            <span className="text-md font-semibold">Money Credit in 2-3 Days</span>
-          </div>
-        </div>
-      </section>
+      {renderStep()}
+      <ApplyFlowchart />
     </div>
   );
 };
 
-export default LoanForm;
+export default ApplyPage;
