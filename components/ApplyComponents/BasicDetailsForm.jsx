@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const BasicDetailsForm = ({nextStep}) => {
+const BasicDetailsForm = ({ nextStep }) => {
   // State for all form fields
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +14,14 @@ const BasicDetailsForm = ({nextStep}) => {
   // State for errors
   const [errors, setErrors] = useState({});
 
+  // Common style for inputs
+  const inputStyle = (error) =>
+    `block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
+      error
+        ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
+        : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
+    }`;
+
   // Validate a single field
   const validateField = (id, value) => {
     let error;
@@ -22,10 +30,7 @@ const BasicDetailsForm = ({nextStep}) => {
         error = value ? "" : "Name is required.";
         break;
       case "mobile":
-        error =
-          value.length === 10 && /^\d+$/.test(value)
-            ? ""
-            : "Mobile number must be exactly 10 digits.";
+        error = /^(\+91|0)?\d{10}$/.test(value) ? "" : "Mobile number must be 10 digits or start with +91 or 0.";
         break;
       case "gender":
         error = value ? "" : "Gender is required.";
@@ -49,9 +54,7 @@ const BasicDetailsForm = ({nextStep}) => {
   // Validate all fields before submission
   const validate = () => {
     const newErrors = {};
-    Object.keys(formData).forEach((field) => {
-      validateField(field, formData[field]);
-    });
+    Object.keys(formData).forEach((field) => validateField(field, formData[field]));
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -61,7 +64,7 @@ const BasicDetailsForm = ({nextStep}) => {
     e.preventDefault();
     if (validate()) {
       console.log("Form submitted:", formData);
-      nextStep()
+      nextStep();
     }
   };
 
@@ -70,14 +73,11 @@ const BasicDetailsForm = ({nextStep}) => {
       <h2 className="text-lg font-semibold text-gray-700 capitalize">
         Let’s start by filling in some basic details:
       </h2>
-
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-6 mt-4">
           {/* Name Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="name">
-              Name
-            </label>
+            <label className="block text-sm text-gray-500" htmlFor="name">Name</label>
             <input
               id="name"
               type="text"
@@ -85,22 +85,14 @@ const BasicDetailsForm = ({nextStep}) => {
               value={formData.name}
               onChange={handleChange}
               required
-              className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                errors.name
-                  ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                  : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-              }`}
+              className={inputStyle(errors.name)}
             />
-            {errors.name && (
-              <p className="mt-2 text-xs text-red-400">{errors.name}</p>
-            )}
+            {errors.name && <p className="mt-2 text-xs text-red-400">{errors.name}</p>}
           </div>
 
           {/* Mobile Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="mobile">
-              Mobile
-            </label>
+            <label className="block text-sm text-gray-500" htmlFor="mobile">Mobile</label>
             <input
               id="mobile"
               type="tel"
@@ -108,48 +100,32 @@ const BasicDetailsForm = ({nextStep}) => {
               value={formData.mobile}
               onChange={handleChange}
               required
-              className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                errors.mobile
-                  ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                  : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-              }`}
+              className={inputStyle(errors.mobile)}
             />
-            {errors.mobile && (
-              <p className="mt-2 text-xs text-red-400">{errors.mobile}</p>
-            )}
+            {errors.mobile && <p className="mt-2 text-xs text-red-400">{errors.mobile}</p>}
           </div>
 
           {/* Gender Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="gender">
-              Gender
-            </label>
+            <label className="block text-sm text-gray-500" htmlFor="gender">Gender</label>
             <select
               id="gender"
               value={formData.gender}
               onChange={handleChange}
               required
-              className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                errors.gender
-                  ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                  : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-              }`}
+              className={inputStyle(errors.gender)}
             >
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-            {errors.gender && (
-              <p className="mt-2 text-xs text-red-400">{errors.gender}</p>
-            )}
+            {errors.gender && <p className="mt-2 text-xs text-red-400">{errors.gender}</p>}
           </div>
 
           {/* Email Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="email">
-              Email
-            </label>
+            <label className="block text-sm text-gray-500" htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -157,25 +133,14 @@ const BasicDetailsForm = ({nextStep}) => {
               value={formData.email}
               onChange={handleChange}
               required
-              className={`block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-                errors.email
-                  ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-                  : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
-              }`}
+              className={inputStyle(errors.email)}
             />
-            {errors.email && (
-              <p className="mt-2 text-xs text-red-400">{errors.email}</p>
-            )}
+            {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
           </div>
 
           {/* Loan Amount Input */}
           <div>
-            <label
-              className="block text-sm text-gray-500"
-              htmlFor="loanAmount"
-            >
-              Loan Amount
-            </label>
+            <label className="block text-sm text-gray-500" htmlFor="loanAmount">Loan Amount</label>
             <input
               id="loanAmount"
               type="range"

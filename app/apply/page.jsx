@@ -7,7 +7,7 @@ import SuccessMessage from "@/components/ApplyComponents/SuccessMessage";
 import React, { useState } from "react";
 
 const ApplyPage = () => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
 
   const nextStep = () => {
     setStep(step + 1)
