@@ -75,20 +75,19 @@ const Navbar = () => {
                     <a href="#" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
                         About Us
                     </a>
-                    <a href="#" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
+                    <a href="/#patners" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
                         Our Partners
                     </a>
                     <a href="#" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
                         Contact Us
                     </a>
-                    <a href="#" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Login</a>
                 </div>
             </nav>
 
             {/* Sidebar */}
             <aside
                 ref={sidebarRef}
-                className={`fixed top-0 right-0 md:left-0 h-full bg-white shadow-lg transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full md:-translate-x-full'
+                className={`fixed top-0 right-0 md:left-0 h-screen bg-white shadow-lg transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full md:-translate-x-full'
                     } z-30 lg:w-64 w-64`}
             >
                 <div className="flex items-center justify-between px-4 py-4 ">
@@ -111,7 +110,7 @@ const Navbar = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="px-4 py-6">
+                <div className="px-4 ">
                     <ul className="space-y-4 text-left max-h-[600px] overflow-auto">
                         <li>
                             <Link href="/" className="text-gray-800 hover:text-blue-500 block">Home</Link>

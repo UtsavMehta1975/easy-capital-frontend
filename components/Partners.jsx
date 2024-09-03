@@ -11,7 +11,7 @@ const Partners = () => {
   ];
 
   return (
-    <div className="w-full pt-10 pb-20 bg-gray-100">
+    <section id='patners' className="w-full pt-10 pb-20 bg-gray-100">
       <div className="max-w-85% mx-auto px-4">
         <div className="flex flex-col items-center gap-6">
           <h2 className="text-5xl font-bold text-center text-gray-800 border-b-2 border-black pb-4">Our Partners</h2>
@@ -24,7 +24,7 @@ const Partners = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

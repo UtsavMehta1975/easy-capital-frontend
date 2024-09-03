@@ -1,11 +1,11 @@
 // data/loanContent.js
 
-import { faLock, faClock, faCalendarAlt, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faClock, faCalendarAlt, faIndianRupeeSign } from '@fortawesome/free-solid-svg-icons';
 
 export const contentMap = {
     'unsecured-business-loan': {
         title: "Fast & Flexible Unsecured Business Loans",
-        description: "Empower your business growth with our unsecured loans. No collateral required—just quick access to funds, flexible repayment options, and competitive rates to fuel your ambitions.",
+        description: "Empower your business growth with our collateral-free business loans of up to ₹1 crore. Enjoy hassle-free documentation, quick access to funds, and flexible repayment options—all at competitive rates to fuel your ambitions.",
         imageUrl: "/images/products/unsecure-loan.svg",
         loanType: "Unsecured Business Loan",
         keyComponents: [
@@ -27,7 +27,7 @@ export const contentMap = {
             {
                 title: "Competitive Interest Rates",
                 description: "Enjoy competitive rates that help keep your business expenses low and profits high.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
         ],
     },
@@ -40,7 +40,7 @@ export const contentMap = {
             {
                 title: "Flexible Access",
                 description: "Access funds as needed with our flexible credit line.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
             {
                 title: "Manage Cash Flow",
@@ -78,7 +78,7 @@ export const contentMap = {
             {
                 title: "Affordable Interest Rates",
                 description: "Benefit from competitive rates that are tailored for MSMEs.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
             {
                 title: "Quick Processing",
@@ -101,7 +101,7 @@ export const contentMap = {
             {
                 title: "Higher Loan Amounts",
                 description: "Access larger amounts compared to unsecured loans.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
             {
                 title: "Lower Interest Rates",
@@ -124,7 +124,7 @@ export const contentMap = {
             {
                 title: "Purchase New Machinery",
                 description: "Get funding specifically for buying new machinery and equipment.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
             {
                 title: "Easy Repayment Plans",
@@ -162,7 +162,7 @@ export const contentMap = {
             {
                 title: "Competitive Rates",
                 description: "Benefit from competitive rates tailored for women business owners.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
             {
                 title: "Quick Processing",
@@ -185,7 +185,7 @@ export const contentMap = {
             {
                 title: "Grow Your Online Presence",
                 description: "Use the loan to invest in digital marketing, inventory, and technology.",
-                icon: faDollarSign,
+                icon: faIndianRupeeSign,
             },
             {
                 title: "Flexible Repayment Options",

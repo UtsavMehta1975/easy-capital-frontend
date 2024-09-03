@@ -180,7 +180,7 @@ const BasicDetailsForm = ({nextStep}) => {
               id="loanAmount"
               type="range"
               min="50000"
-              max="1000000"
+              max="10000000"
               value={formData.loanAmount}
               onChange={handleChange}
               className="w-full h-2 mt-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"

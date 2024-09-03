@@ -61,7 +61,7 @@ const LoanCalculator = () => {
             </p>
             <div className="space-y-8">
               {[
-                { label: 'Loan Amount', value: formattedLoanAmount, min: 1000000, max: 5000000, step: 10000 },
+                { label: 'Loan Amount', value: formattedLoanAmount, min: 1000000, max: 10000000, step: 10000 },
                 { label: 'Tenure', value: formattedTenure, min: 12, max: 60, step: 1 },
                 { label: 'Interest Rate', value: formattedInterestRate, min: 10, max: 33, step: 0.5 }
               ].map(({ label, value, min, max, step }) => (
