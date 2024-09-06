@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Autocomplete from 'react-google-autocomplete';
 
 const AccountInfoForm = ({ nextStep }) => {
   const [formData, setFormData] = useState({
@@ -37,15 +36,6 @@ const AccountInfoForm = ({ nextStep }) => {
   const handleChange = ({ target: { id, value } }) => {
     setFormData((prev) => ({ ...prev, [id]: value }));
     validateField(id, value);
-  };
-
-  const handleAddressChange = (place) => {
-    const components = place.address_components || [];
-    const state = components.find(c => c.types.includes('administrative_area_level_1'))?.long_name || '';
-    const city = components.find(c => c.types.includes('locality'))?.long_name || '';
-    const pincode = components.find(c => c.types.includes('postal_code'))?.long_name || '';
-    setFormData((prev) => ({ ...prev, state, city, pincode }));
-    ["state", "city", "pincode"].forEach((id) => validateField(id, { state, city, pincode }[id]));
   };
 
   const validate = () => {
@@ -92,11 +82,6 @@ const AccountInfoForm = ({ nextStep }) => {
               {errors[id] && <p className="mt-2 text-xs text-red-400">{errors[id]}</p>}
             </div>
           ))}
-
-          <div>
-            <label className="block text-sm text-gray-500" htmlFor="address">Address (for auto-filling state, city, pincode)</label>
-            <Autocomplete id="address" onPlaceSelected={handleAddressChange} apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} types={['address']} options={{ types: ["(regions)"], componentRestrictions: { country: "in" }, }} className="block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]" />
-          </div>
         </div>
         <button type="submit" className="mt-4 w-full px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">Next Step</button>
       </form>
