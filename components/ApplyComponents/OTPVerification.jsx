@@ -1,9 +1,11 @@
+import axiosInstance from "@/utils/axios";
 import React, { useState, useEffect, useRef } from "react";
 
 const OTPVerification = ({ nextStep }) => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const [isChecked, setIsChecked] = useState(false); // State to track checkbox
+  const [sending, setSending] = useState(false); // State to track loading for OTP verification
 
   const inputRefs = useRef([]);
 
@@ -45,15 +47,47 @@ const OTPVerification = ({ nextStep }) => {
       return;
     }
 
-    nextStep();
+    setSending(true); // Set loading state
+    try {
+      // Call verifyOTP API
+      const response = await axiosInstance.post("/verify-otp", {
+        otp: otpValue,
+      });
+
+      if (response.data.success) {
+        nextStep(); // Move to the next step if successful
+      } else {
+        setError(response.data.message || "Failed to verify OTP.");
+      }
+    } catch (e) {
+      console.error(e);
+      setError("Failed to verify OTP. Please try again.");
+    } finally {
+      setSending(false); // Reset loading state
+    }
   };
 
-  const handleResend = () => {
-    alert("Resend OTP functionality not implemented.");
+  const handleResend = async () => {
+    setSending(true); // Set loading state
+    try {
+      // Call resendOTP API
+      const response = await axiosInstance.post("/resend-otp");
+
+      if (response.data.success) {
+        alert("OTP has been resent to your phone number.");
+      } else {
+        setError(response.data.message || "Failed to resend OTP.");
+      }
+    } catch (e) {
+      console.error(e);
+      setError("Failed to resend OTP. Please try again.");
+    } finally {
+      setSending(false); // Reset loading state
+    }
   };
 
   return (
-    <div className="min-w-[320px] w-[45%] p-6 relative flex  rounded-lg flex-col justify-center overflow-hidden bg-gray-50 py-12">
+    <div className="min-w-[320px] w-[45%] p-6 relative flex rounded-lg flex-col justify-center overflow-hidden bg-gray-50 py-12">
       <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
@@ -100,8 +134,9 @@ const OTPVerification = ({ nextStep }) => {
                   <button
                     type="submit"
                     className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
+                    disabled={sending} // Disable button when loading
                   >
-                    Verify Account
+                    {sending ? "Verifying..." : "Verify Account"}
                   </button>
                 </div>
 
@@ -111,8 +146,9 @@ const OTPVerification = ({ nextStep }) => {
                     type="button"
                     onClick={handleResend}
                     className="flex flex-row items-center text-blue-600"
+                    disabled={sending} // Disable button when loading
                   >
-                    Resend
+                    {sending ? "Resending..." : "Resend"}
                   </button>
                 </div>
               </div>
