@@ -1,8 +1,8 @@
 "use client";
+import axiosInstance from "@/utils/axios";
 import React, { useState } from "react";
 
 const BasicDetailsForm = ({ nextStep }) => {
-  // State for all form fields
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -11,18 +11,16 @@ const BasicDetailsForm = ({ nextStep }) => {
     loanAmount: 50000,
   });
 
-  // State for errors
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const [sending, setSending] = useState(false); // State to track loading
 
-  // Common style for inputs
   const inputStyle = (error) =>
-    `block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${
-      error
-        ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
-        : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
+    `block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${error
+      ? "border-red-400 focus:border-red-400 focus:ring-red-300 bg-white"
+      : "border-gray-200 focus:border-blue-400 focus:ring-blue-300 bg-[rgb(237,242,247)]"
     }`;
 
-  // Validate a single field
   const validateField = (id, value) => {
     let error;
     switch (id) {
@@ -44,14 +42,12 @@ const BasicDetailsForm = ({ nextStep }) => {
     setErrors((prevErrors) => ({ ...prevErrors, [id]: error }));
   };
 
-  // Handle input change
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [id]: value }));
-    validateField(id, value); // Validate field on change
+    validateField(id, value);
   };
 
-  // Validate all fields before submission
   const validate = () => {
     const newErrors = {};
     Object.keys(formData).forEach((field) => validateField(field, formData[field]));
@@ -59,13 +55,38 @@ const BasicDetailsForm = ({ nextStep }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
+  // Function to send OTP
+  const sendOTP = async () => {
+    if (validate()) {
+      setSending(true); // Set loading state
+      try {
+        const res = await axiosInstance.post("/login/send-otp", {
+          name: formData.name,
+          email: formData.email,
+          phoneNumber: formData.mobile,
+          gender: formData.gender,
+          amount: formData.loanAmount,
+        });
+
+        const { message, error } = res.data;
+        if (error) {
+          setApiError(message);
+        } else {
+          setApiError("");
+          nextStep(); // Move to the next step if successful
+        }
+      } catch (e) {
+        console.error(e);
+        setApiError("Failed to send OTP. Please try again.");
+      } finally {
+        setSending(false); // Reset loading state
+      }
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log("Form submitted:", formData);
-      nextStep();
-    }
+    sendOTP(); // Call sendOTP on form submit
   };
 
   return (
@@ -155,13 +176,14 @@ const BasicDetailsForm = ({ nextStep }) => {
             </span>
           </div>
         </div>
-
+        {apiError && <p className="mt-2 text-xs text-red-400">{apiError}</p>}
         <div className="flex justify-end mt-6">
           <button
             type="submit"
             className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            disabled={sending} // Disable button when loading
           >
-            Apply
+            {sending ? "Sending..." : "Apply"}
           </button>
         </div>
       </form>
