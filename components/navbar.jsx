@@ -8,7 +8,6 @@ import { FiMenu } from 'react-icons/fi';
 const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [businessLoanDropdownOpen, setBusinessLoanDropdownOpen] = useState(false);
-    const [gstDropdownOpen, setGstDropdownOpen] = useState(false);
     const [registrationDropdownOpen, setRegistrationDropdownOpen] = useState(false);
 
     const sidebarRef = useRef(null);
@@ -21,9 +20,6 @@ const Navbar = () => {
         switch (dropdownType) {
             case 'businessLoan':
                 setBusinessLoanDropdownOpen(!businessLoanDropdownOpen);
-                break;
-            case 'gst':
-                setGstDropdownOpen(!gstDropdownOpen);
                 break;
             case 'registration':
                 setRegistrationDropdownOpen(!registrationDropdownOpen);
@@ -125,11 +121,11 @@ const Navbar = () => {
                             <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${businessLoanDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
                                 {Object.entries(NavLoanContent).map(([key, { title, link }]) => (
                                     <li key={key}>
-                                        <Link href={link} className="text-gray-800 hover:text-blue-500 block">
-                                            <span onClick={toggleSidebar} >
+                                        <span onClick={toggleSidebar} >
+                                            <Link href={link} className="text-gray-800 hover:text-blue-500 block">
                                                 {title}
-                                            </span>
-                                        </Link>
+                                            </Link>
+                                        </span>
                                     </li>
                                 ))}
                             </ul>
@@ -137,24 +133,9 @@ const Navbar = () => {
 
                         {/* GST Services Dropdown */}
                         <li>
-                            <div onClick={() => toggleDropdown('gst')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
-                                GST Services
-                                <span className={`transform transition-transform ${gstDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
-                            </div>
-                            <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${gstDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">GST Registration</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">GST Filing</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">GST Registration Cancellation</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">GST Annual Return</a>
-                                </li>
-                            </ul>
+                            <span onClick={toggleSidebar} >
+                                <Link href={"/gst-services"} className="text-gray-800 hover:text-blue-500 block" >GST Services</Link>
+                            </span>
                         </li>
 
                         {/* Registration Services Dropdown */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Partners from '../Partners';
 
-const SuccessMessage = () => {
+const SuccessMessage = ({verificationMessage}) => {
     return (
         <>
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto flex flex-col text-center items-center">
@@ -23,7 +23,7 @@ const SuccessMessage = () => {
                 </div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Application Submitted Successfully</h2>
                 <p className="text-gray-600 text-base">
-                    We will match you with the right lender and the money will be credited within 2-3 days.
+                    {verificationMessage}
                 </p>
             </div>
             <Partners />
