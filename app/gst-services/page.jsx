@@ -2,6 +2,7 @@
 import OTPVerification from "@/components/ApplyComponents/OTPVerification"; // Import OTPVerification component
 import SuccessMessage from "@/components/ApplyComponents/SuccessMessage";
 import BasicContactForm from "@/components/GstComponents/BasicContactForm";
+import GSTOverview from "@/components/GstComponents/GSTOverview";
 import React, { useState } from "react";
 
 const GstPage = () => {
@@ -25,7 +26,7 @@ const GstPage = () => {
   };
 
   return (
-    <div className="max-w-[90vw] mx-auto flex flex-wrap justify-center gap-6 my-10">
+    <div className="max-w-[90vw] mx-auto flex flex-col justify-center items-center gap-6 my-10">
       {/* Stepper Component */}
       <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
         <li
@@ -77,6 +78,7 @@ const GstPage = () => {
       </ol>
 
       {renderStep()}
+      <GSTOverview />
     </div>
   );
 };
