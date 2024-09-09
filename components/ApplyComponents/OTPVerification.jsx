@@ -89,7 +89,9 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
     setSending(true); // Set loading state
     try {
       // Call resendOTP API
-      const response = await axiosInstance.post("/resend-otp");
+      const response = await axiosInstance.post("/login/resend-otp", {
+        orderId: orderDetails.orderId,
+      });
 
       if (response.data.success) {
         alert("OTP has been resent to your phone number.");
