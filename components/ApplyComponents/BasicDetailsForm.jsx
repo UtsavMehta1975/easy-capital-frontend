@@ -2,7 +2,7 @@
 import axiosInstance from "@/utils/axios";
 import React, { useState } from "react";
 
-const BasicDetailsForm = ({ nextStep }) => {
+const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -68,12 +68,13 @@ const BasicDetailsForm = ({ nextStep }) => {
           amount: formData.loanAmount,
         });
 
-        const { message, error } = res.data;
+        const { message, orderDetails, error } = res.data;
         if (error) {
           setApiError(message);
         } else {
           setApiError("");
-          nextStep(); // Move to the next step if successful
+          await setOrderDetails(orderDetails)
+          nextStep();
         }
       } catch (e) {
         console.error(e);

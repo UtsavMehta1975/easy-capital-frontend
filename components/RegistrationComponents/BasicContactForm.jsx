@@ -1,29 +1,13 @@
 "use client";
 import axiosInstance from "@/utils/axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const BasicContactForm = ({ nextStep, changeService }) => {
+const BasicContactForm = ({ service, nextStep, setOrderDetails, setRegisterationId }) => {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
     email: "",
-    gstServiceType: "",
   });
-
-  useEffect(() => {
-    const gstServiceMapping = {
-      "Udhyam Certificate": "udhyam",
-      "FSSAI Registration": "fssai",
-      "HALAL Registration": "halal",
-      "Trade License": "tradeLicense",
-    };
-
-    const selectedService = gstServiceMapping[formData.gstServiceType] || "";
-
-    changeService(selectedService);
-  }, [formData.gstServiceType]);
-
-
 
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState("");
@@ -46,9 +30,6 @@ const BasicContactForm = ({ nextStep, changeService }) => {
         break;
       case "email":
         error = value ? "" : "Email is required.";
-        break;
-      case "gstServiceType":
-        error = value ? "" : "GST Service Type is required.";
         break;
       default:
         break;
@@ -74,18 +55,20 @@ const BasicContactForm = ({ nextStep, changeService }) => {
     if (validate()) {
       setSending(true); // Set loading state
       try {
-        const res = await axiosInstance.post("/login/send-otp", {
+        const res = await axiosInstance.post("/registeration-requests/create", {
           name: formData.name,
           email: formData.email,
           phoneNumber: formData.mobile,
-          gstServiceType: formData.gstServiceType,
+          registerationServiceType: service,
         });
 
-        const { message, error } = res.data;
+        const { message, orderDetails, registeration, error } = res.data;
         if (error) {
           setApiError(message);
         } else {
           setApiError("");
+          await setOrderDetails(orderDetails)
+          await setRegisterationId(registeration)
           nextStep(); // Move to the next step if successful
         }
       } catch (e) {
@@ -154,24 +137,7 @@ const BasicContactForm = ({ nextStep, changeService }) => {
             {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
           </div>
 
-          {/* GST Service Type */}
-          <div>
-            <label className="block text-sm text-gray-500" htmlFor="gstServiceType">GST Service Type</label>
-            <select
-              id="gstServiceType"
-              value={formData.gstServiceType}
-              onChange={handleChange}
-              required
-              className={inputStyle(errors.gstServiceType)}
-            >
-              <option value="">Select GST Service Type</option>
-              <option value="Udhyam Certificate">Udhyam Certificate</option>
-              <option value="FSSAI Registration">FSSAI Registration</option>
-              <option value="HALAL Registration">HALAL Registration</option>
-              <option value="Trade License">Trade License</option>
-            </select>
-            {errors.gstServiceType && <p className="mt-2 text-xs text-red-400">{errors.gstServiceType}</p>}
-          </div>
+
 
         </div>
         {apiError && <p className="mt-2 text-xs text-red-400">{apiError}</p>}

@@ -1,7 +1,7 @@
 import React from "react";
 
 const infoData = {
-    udhyam: [
+    "udhyam-certificate": [
         {
             title: "What is the Udhyam Certificate?",
             content: "The Udyam Certificate is a government-issued document that certifies the registration of Micro, Small, and Medium Enterprises (MSMEs) under the Ministry of MSME in India. It is a mandatory requirement for businesses seeking benefits and schemes provided by the government to support MSMEs."
@@ -23,7 +23,7 @@ const infoData = {
             content: "To edit your Udyam Certificate, visit the Udyam Registration portal, log in using your registration number and Aadhaar-linked mobile number, and make necessary changes. Submit the edited application for approval."
         },
     ],
-    fssai: [
+    "fssai-registration": [
         {
             title: "What is FSSAI Registration?",
             content: "FSSAI Registration is a mandatory compliance for food business operators (FBOs) in India, ensuring the safety and standardization of food products. It is issued by the Food Safety and Standards Authority of India (FSSAI) and is required for all food-related businesses to legally operate."
@@ -57,7 +57,7 @@ const infoData = {
             content: "Documents required for an FSSAI License include a passport-sized photograph, proof of identity, business registration certificate, address proof, and a list of food products to be handled."
         }
     ],
-    halal: [
+    "halal-registration": [
         {
             title: "What is a Halal Certificate?",
             content: "A Halal Certificate is an official document that certifies that a product or service adheres to Islamic dietary laws as defined in the Quran. It ensures that food, beverages, cosmetics, and other consumable goods meet the standards set for Halal consumption by Muslims."
@@ -83,7 +83,7 @@ const infoData = {
             content: "Documents required for a Halal certificate include a business license, list of products, raw material details, manufacturing process details, hygiene and safety compliance certificates, and a filled application form from the certifying authority."
         }
     ],
-    tradeLicense: [
+    "trade-license": [
         {
             title: "What is a Trade License?",
             content: "A Trade License is an official document issued by the local municipal authority that permits an individual or company to carry out a specific trade or business at a particular location. It ensures that the business complies with local laws and regulations related to safety, health, and cleanliness."
@@ -129,7 +129,7 @@ const RegistrationOverview = ({ type }) => {
     return (
         <div className="p-8 bg-gradient-to-br from-blue-50 to-white shadow-lg rounded-xl w-[80%] min-w-[320px] mx-auto mt-10">
             <h2 className="text-3xl font-extrabold text-center mb-8 text-green-800">
-                {type.charAt(0).toUpperCase() + type.slice(1)}: Registration and Benefits
+                {type.replace('-', ' ').toUpperCase()}: Registration and Benefits
             </h2>
 
             <div className="space-y-6">

@@ -1,7 +1,7 @@
 import axiosInstance from "@/utils/axios";
 import React, { useState, useEffect, useRef } from "react";
 
-const OTPVerification = ({ nextStep }) => {
+const OTPVerification = ({ nextStep, orderDetails, store }) => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const [isChecked, setIsChecked] = useState(false); // State to track checkbox
@@ -33,6 +33,20 @@ const OTPVerification = ({ nextStep }) => {
     setIsChecked(!isChecked); // Toggle checkbox state
   };
 
+  function storeToken(token) {
+    if (token) {
+      sessionStorage.setItem('token', token);
+
+      // Automatically remove the token after 10 minutes
+      setTimeout(() => {
+        sessionStorage.removeItem('token');
+      }, 5 * 60 * 1000); // 5 minutes
+    } else {
+      console.error("No token provided");
+    }
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const otpValue = otp.join("");
@@ -50,11 +64,15 @@ const OTPVerification = ({ nextStep }) => {
     setSending(true); // Set loading state
     try {
       // Call verifyOTP API
-      const response = await axiosInstance.post("/verify-otp", {
+      const response = await axiosInstance.post("/login/verify-otp", {
         otp: otpValue,
+        ...orderDetails
       });
 
       if (response.data.success) {
+        if (store === true) {
+          storeToken(response.data.token);
+        }
         nextStep(); // Move to the next step if successful
       } else {
         setError(response.data.message || "Failed to verify OTP.");

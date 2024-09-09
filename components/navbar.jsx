@@ -9,6 +9,7 @@ const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [businessLoanDropdownOpen, setBusinessLoanDropdownOpen] = useState(false);
     const [registrationDropdownOpen, setRegistrationDropdownOpen] = useState(false);
+    const [gstDropdownOpen, setGstDropdownOpen] = useState(false);
 
     const sidebarRef = useRef(null);
 
@@ -23,6 +24,9 @@ const Navbar = () => {
                 break;
             case 'registration':
                 setRegistrationDropdownOpen(!registrationDropdownOpen);
+                break;
+            case 'gst':
+                setGstDropdownOpen(!registrationDropdownOpen);
                 break;
             default:
                 break;
@@ -109,7 +113,11 @@ const Navbar = () => {
                 <div className="px-4 ">
                     <ul className="space-y-4 text-left max-h-[600px] overflow-auto">
                         <li>
-                            <Link href="/" className="text-gray-800 hover:text-blue-500 block">Home</Link>
+                            <span onClick={toggleSidebar} >
+                                <Link href="/" className="text-gray-800 hover:text-blue-500 block">
+                                    Home
+                                </Link>
+                            </span>
                         </li>
 
                         {/* Business Loan Dropdown */}
@@ -131,18 +139,64 @@ const Navbar = () => {
                             </ul>
                         </li>
 
-                        {/* GST Services */}
+                        {/* GST Services Dropdown */}
                         <li>
-                            <span onClick={toggleSidebar} >
-                                <Link href={"/gst-services"} className="text-gray-800 hover:text-blue-500 block" >GST Services</Link>
-                            </span>
+                            <div onClick={() => toggleDropdown('gst')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
+                                GST Services
+                                <span className={`transform transition-transform ${gstDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
+                            </div>
+                            <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${gstDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
+                                <li>
+                                    <span onClick={toggleSidebar} >
+                                        <Link href="/gst-services/gst-registration" className="text-gray-800 hover:text-blue-500 block">GST Registration</Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span onClick={toggleSidebar} >
+                                        <Link href="/gst-services/gst-filling" className="text-gray-800 hover:text-blue-500 block">GST filling</Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span onClick={toggleSidebar} >
+                                        <Link href="/gst-services/gst-registration-cancelation" className="text-gray-800 hover:text-blue-500 block">GST Registration Cancelation</Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span onClick={toggleSidebar} >
+                                        <Link href="/gst-services/gst-annual-return" className="text-gray-800 hover:text-blue-500 block">GST Annual Return</Link>
+                                    </span>
+                                </li>
+                            </ul>
                         </li>
 
-                        {/* Registration Services */}
+                        {/* Registration Services Dropdown */}
                         <li>
-                            <span onClick={toggleSidebar} >
-                                <Link href={"/registration-services"} className="text-gray-800 hover:text-blue-500 block" >Registration Services</Link>
-                            </span>
+                            <div onClick={() => toggleDropdown('registration')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
+                                Registration Services
+                                <span className={`transform transition-transform ${registrationDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
+                            </div>
+                            <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${registrationDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
+                                <li>
+                                    <span onClick={toggleSidebar}>
+                                        <Link href="/registration-services/udhyam-certificate" className="text-gray-800 hover:text-blue-500 block">Udhyam Certificate</Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span onClick={toggleSidebar}>
+                                        <Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500 block">FSSAI Registration</Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span onClick={toggleSidebar}>
+                                        <Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500 block">HALAL Registration</Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span onClick={toggleSidebar}>
+                                        <Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500 block">Trade License</Link>
+                                    </span>
+                                </li>
+                            </ul>
                         </li>
 
                     </ul>

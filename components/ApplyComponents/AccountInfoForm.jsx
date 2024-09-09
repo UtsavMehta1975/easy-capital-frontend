@@ -1,4 +1,5 @@
 "use client";
+import axiosInstance from "@/utils/axios";
 import React, { useState } from "react";
 
 const AccountInfoForm = ({ nextStep }) => {
@@ -43,11 +44,36 @@ const AccountInfoForm = ({ nextStep }) => {
     return !Object.values(errors).some((error) => error);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted:", formData);
-      nextStep();
+      try {
+        const details = {
+          pan: formData.pan,
+          businessType: formData.businessType,
+          shopName: formData.shopName,
+          businessAge: formData.businessAge,
+          accountType: formData.accountType,
+          gst: formData.gst,
+          gstNumber: formData.gstNumber,
+          state: formData.state,
+          city: formData.city,
+          pincode: formData.pincode,
+        };
+
+        // Send PUT request to update user details
+        const response = await axiosInstance.put('/update-details', { details }, {
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}` // Assuming you store the token in localStorage
+          }
+        });
+
+        // Handle response
+        // console.log('User details updated:', response.data);
+        nextStep();
+      } catch (error) {
+        console.error('Error updating user details:', error);
+      }
     }
   };
 

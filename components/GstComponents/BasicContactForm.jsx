@@ -2,12 +2,11 @@
 import axiosInstance from "@/utils/axios";
 import React, { useState } from "react";
 
-const BasicContactForm = ({ nextStep }) => {
+const BasicContactForm = ({ service, nextStep, setOrderDetails, setGstId }) => {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
     email: "",
-    gstServiceType: "", // New GST service type field
   });
 
   const [errors, setErrors] = useState({});
@@ -31,9 +30,6 @@ const BasicContactForm = ({ nextStep }) => {
         break;
       case "email":
         error = value ? "" : "Email is required.";
-        break;
-      case "gstServiceType":
-        error = value ? "" : "GST Service Type is required.";
         break;
       default:
         break;
@@ -59,18 +55,20 @@ const BasicContactForm = ({ nextStep }) => {
     if (validate()) {
       setSending(true); // Set loading state
       try {
-        const res = await axiosInstance.post("/login/send-otp", {
+        const res = await axiosInstance.post("/gst-requests/create", {
           name: formData.name,
           email: formData.email,
           phoneNumber: formData.mobile,
-          gstServiceType: formData.gstServiceType,
+          gstServiceType: service,
         });
 
-        const { message, error } = res.data;
+        const { message, orderDetails, gst, error } = res.data;
         if (error) {
           setApiError(message);
         } else {
           setApiError("");
+          await setOrderDetails(orderDetails)
+          await setGstId(gst)
           nextStep(); // Move to the next step if successful
         }
       } catch (e) {
@@ -139,24 +137,7 @@ const BasicContactForm = ({ nextStep }) => {
             {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
           </div>
 
-          {/* GST Service Type */}
-          <div>
-            <label className="block text-sm text-gray-500" htmlFor="gstServiceType">GST Service Type</label>
-            <select
-              id="gstServiceType"
-              value={formData.gstServiceType}
-              onChange={handleChange}
-              required
-              className={inputStyle(errors.gstServiceType)}
-            >
-              <option value="">Select GST Service Type</option>
-              <option value="GST Registration">GST Registration</option>
-              <option value="GST Filing">GST Filing</option>
-              <option value="GST Registration Cancellation">GST Registration Cancellation</option>
-              <option value="GST Annual Return">GST Annual Return</option>
-            </select>
-            {errors.gstServiceType && <p className="mt-2 text-xs text-red-400">{errors.gstServiceType}</p>}
-          </div>
+
 
         </div>
         {apiError && <p className="mt-2 text-xs text-red-400">{apiError}</p>}
