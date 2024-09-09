@@ -131,34 +131,20 @@ const Navbar = () => {
                             </ul>
                         </li>
 
-                        {/* GST Services Dropdown */}
+                        {/* GST Services */}
                         <li>
                             <span onClick={toggleSidebar} >
                                 <Link href={"/gst-services"} className="text-gray-800 hover:text-blue-500 block" >GST Services</Link>
                             </span>
                         </li>
 
-                        {/* Registration Services Dropdown */}
+                        {/* Registration Services */}
                         <li>
-                            <div onClick={() => toggleDropdown('registration')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
-                                Registration Services
-                                <span className={`transform transition-transform ${registrationDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
-                            </div>
-                            <ul className={`pl-2 border-l border-cyan-800 transition-all duration-500 overflow-hidden ${registrationDropdownOpen ? 'max-h-96' : 'max-h-0'} mt-2 space-y-2`}>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Udhyam Certificate</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">FSSAI Registration</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">HALAL Registration</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-800 hover:text-blue-500 block">Trade License</a>
-                                </li>
-                            </ul>
+                            <span onClick={toggleSidebar} >
+                                <Link href={"/registration-services"} className="text-gray-800 hover:text-blue-500 block" >Registration Services</Link>
+                            </span>
                         </li>
+
                     </ul>
                 </div>
 
