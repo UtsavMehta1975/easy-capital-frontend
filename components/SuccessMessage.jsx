@@ -67,11 +67,11 @@ const SuccessMessage = ({ verificationMessage, gstId, registerationId }) => {
                     </svg>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Application Submitted Successfully</h2>
-                <p className="text-gray-600 text-base">
-                    {verificationMessage}
-                </p>
+                {verificationMessage}
             </div>
-            <Partners />
+            {(!gstId && !registerationId) && (<p className="text-gray-600 text-base">
+                <Partners />
+            </p>)}
         </>
     );
 };

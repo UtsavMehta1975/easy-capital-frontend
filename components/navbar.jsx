@@ -26,7 +26,7 @@ const Navbar = () => {
                 setRegistrationDropdownOpen(!registrationDropdownOpen);
                 break;
             case 'gst':
-                setGstDropdownOpen(!registrationDropdownOpen);
+                setGstDropdownOpen(!gstDropdownOpen);
                 break;
             default:
                 break;
@@ -72,15 +72,12 @@ const Navbar = () => {
 
                 {/* Links - hidden on mobile */}
                 <div className="hidden md:flex space-x-4">
-                    <a href="#" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
+                    <Link href="/about-us" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
                         About Us
-                    </a>
-                    <a href="/#patners" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
-                        Our Partners
-                    </a>
-                    <a href="#" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
+                    </Link>
+                    <Link href="/contact-us" className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">
                         Contact Us
-                    </a>
+                    </Link>
                 </div>
             </nav>
 
@@ -209,13 +206,10 @@ const Navbar = () => {
                             <a href="#" className="text-gray-800 hover:text-blue-500">About Us</a>
                         </li>
                         <li>
-                            <a href="#" className="text-gray-800 hover:text-blue-500">Our Partners</a>
-                        </li>
-                        <li>
                             <a href="#" className="text-gray-800 hover:text-blue-500">Contact Us</a>
                         </li>
                     </ul>
-                    <a href="#" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full text-center font-semibold">Login</a>
+                    <Link href="/apply" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full text-center font-semibold">Apply Now</Link>
                 </div>
             </aside>
 

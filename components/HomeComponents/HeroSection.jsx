@@ -4,7 +4,7 @@ import React from 'react';
 
 const HeroSection = () => {
     return (
-        <section className="container px-6 py-16 mx-auto text-center">
+        <section className="container px-6 py-7 mx-auto text-center">
             <div className="max-w-lg mx-auto">
                 <h1 className="text-3xl font-bold text-gray-800 lg:text-4xl">
                     Empowering Your Business with Easy Capital Solutions
