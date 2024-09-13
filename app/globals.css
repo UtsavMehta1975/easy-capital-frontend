@@ -15,6 +15,7 @@
     transform: translateY(-20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -27,21 +28,25 @@
 }
 
 .flowchart-card:nth-child(1) {
-  animation-delay: 0.4s; 
+  animation-delay: 0.4s;
 }
 
 .flowchart-card:nth-child(2) {
-  animation-delay: 0.8s; 
+  animation-delay: 0.8s;
 }
 
 .flowchart-card:nth-child(3) {
-  animation-delay: 1.2s; 
+  animation-delay: 1.2s;
 }
 
 .flowchart-card:nth-child(4) {
-  animation-delay: 1.6s; 
+  animation-delay: 1.6s;
 }
 
 .flowchart-card:nth-child(5) {
-  animation-delay: 2.2s; 
+  animation-delay: 2.2s;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
