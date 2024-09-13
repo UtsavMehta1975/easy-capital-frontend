@@ -6,11 +6,11 @@ const formatNumber = (number) => number.toLocaleString('en-IN');
 
 const LoanCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(1621212);
-  const [tenure, setTenure] = useState(24);
+  const [tenure, setTenure] = useState(24); // Tenure in months
   const [interestRate, setInterestRate] = useState(15.5);
 
   const [formattedLoanAmount, setFormattedLoanAmount] = useState(formatNumber(1621212));
-  const [formattedTenure, setFormattedTenure] = useState(24);
+  const [formattedTenure, setFormattedTenure] = useState(24); // Tenure in months
   const [formattedInterestRate, setFormattedInterestRate] = useState(15.5);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const LoanCalculator = () => {
   }, [loanAmount]);
 
   useEffect(() => {
-    setFormattedTenure(tenure);
+    setFormattedTenure(tenure); // Updating formatted tenure when tenure state changes
   }, [tenure]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const LoanCalculator = () => {
   const [totalPayable, setTotalPayable] = useState(emi * tenure);
 
   const handleLoanAmountChange = (e) => setLoanAmount(Number(e.target.value));
-  const handleTenureChange = (e) => setTenure(Number(e.target.value));
+  const handleTenureChange = (e) => setTenure(Number(e.target.value)); // Tenure in months
   const handleInterestRateChange = (e) => setInterestRate(Number(e.target.value));
 
   return (
@@ -55,21 +55,23 @@ const LoanCalculator = () => {
       <div className="bg-white shadow-xl rounded-3xl p-8 md:p-6">
         <div className="grid gap-12 md:gap-8 md:grid-cols-1 md:space-y-8 lg:grid-cols-2">
           <div>
-            <span className="block text-2xl font-semibold mb-4 md:text-lg">How much are you looking for?</span>
-            <p className="text-gray-600 mb-8 md:text-sm">
+            <span className="block text-3xl text-center font-bold mb-4 md:text-lg md:text-start">How much are you looking for?</span>
+            <p className="text-gray-600 text-center mb-8 md:text-sm md:text-start">
               Select your loan amount above and elevate your business.
             </p>
             <div className="space-y-8">
               {[
                 { label: 'Loan Amount', value: formattedLoanAmount, min: 1000000, max: 10000000, step: 10000 },
-                { label: 'Tenure', value: formattedTenure, min: 12, max: 60, step: 1 },
+                { label: 'Tenure (Months)', value: formattedTenure, min: 12, max: 60, step: 1 }, // Updated label to indicate tenure is in months
                 { label: 'Interest Rate', value: formattedInterestRate, min: 10, max: 33, step: 0.5 }
               ].map(({ label, value, min, max, step }) => (
                 <div key={label}>
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-lg font-semibold">{label}</p>
                     <div className="bg-gray-200 flex items-center justify-center w-32 h-10 rounded-full">
-                      <p className="text-lg font-bold">{label === 'Interest Rate' ? `${value}%` : `₹${value}`}</p>
+                      <p className="text-lg font-bold">
+                        {label === 'Interest Rate' ? `${value}%` : label === 'Tenure (Months)' ? `${value} months` : `₹${value}`}
+                      </p>
                     </div>
                   </div>
                   <input
@@ -78,8 +80,8 @@ const LoanCalculator = () => {
                     min={min}
                     max={max}
                     step={step}
-                    value={label === 'Loan Amount' ? loanAmount : label === 'Tenure' ? tenure : interestRate}
-                    onChange={label === 'Loan Amount' ? handleLoanAmountChange : label === 'Tenure' ? handleTenureChange : handleInterestRateChange}
+                    value={label === 'Loan Amount' ? loanAmount : label === 'Tenure (Months)' ? tenure : interestRate}
+                    onChange={label === 'Loan Amount' ? handleLoanAmountChange : label === 'Tenure (Months)' ? handleTenureChange : handleInterestRateChange}
                   />
                 </div>
               ))}
