@@ -203,13 +203,19 @@ const Navbar = () => {
                 <div className="absolute bottom-0 left-0 w-full px-4 py-6 bg-white flex flex-col items-center gap-4 ">
                     <ul className="space-y-4 text-center">
                         <li>
-                            <a href="#" className="text-gray-800 hover:text-blue-500">About Us</a>
+                            <span onClick={toggleSidebar}>
+                                <Link href="/about-us" className="text-gray-800 hover:text-blue-500">About Us</Link>
+                            </span>
                         </li>
                         <li>
-                            <a href="#" className="text-gray-800 hover:text-blue-500">Contact Us</a>
+                            <span onClick={toggleSidebar}>
+                                <Link href="/contact-us" className="text-gray-800 hover:text-blue-500">Contact Us</Link>
+                            </span>
                         </li>
                     </ul>
-                    <Link href="/apply" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full text-center font-semibold">Apply Now</Link>
+                    <span className='w-full flex items-center' onClick={toggleSidebar}>
+                        <Link href="/apply" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 mx-auto rounded-md w-full text-center font-semibold">Apply Now</Link>
+                    </span>
                 </div>
             </aside>
 

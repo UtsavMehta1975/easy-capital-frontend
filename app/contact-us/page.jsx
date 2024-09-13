@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import axiosInstance from '@/utils/axios';
+import Map from '@/components/Map';
 
 const Contact = () => {
     const [name, setName] = useState('');
@@ -123,8 +124,8 @@ const Contact = () => {
                     </div>
                     <div className="lg:w-1/2 flex flex-col gap-6">
                         <div className="w-full h-full min-h-[30vh]">
-                            {/* Replace with your Contact Map component */}
-                            <div className="w-full h-full min-h-[30vh] bg-gray-200">Map Placeholder</div>
+                            <Map />
+                            {/* <div className="w-full h-full min-h-[30vh] bg-gray-200">Map Placeholder</div> */}
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="rounded-md bg-blue-500 p-4 flex items-center">

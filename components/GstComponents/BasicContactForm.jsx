@@ -55,10 +55,13 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setGstId }) => {
     if (validate()) {
       setSending(true); // Set loading state
       try {
+        // Process the mobile number to remove 0 or +91
+        let processedMobile = formData.mobile.replace(/^(\+91|0)/, "");
+
         const res = await axiosInstance.post("/gst-requests/create", {
           name: formData.name,
           email: formData.email,
-          phoneNumber: formData.mobile,
+          phoneNumber: processedMobile, // Use the processed mobile number
           gstServiceType: service,
         });
 
@@ -67,8 +70,8 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setGstId }) => {
           setApiError(message);
         } else {
           setApiError("");
-          await setOrderDetails(orderDetails)
-          await setGstId(gst)
+          await setOrderDetails(orderDetails);
+          await setGstId(gst);
           nextStep(); // Move to the next step if successful
         }
       } catch (e) {
@@ -136,9 +139,6 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setGstId }) => {
             />
             {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
           </div>
-
-
-
         </div>
         {apiError && <p className="mt-2 text-xs text-red-400">{apiError}</p>}
         <div className="flex justify-end mt-6">

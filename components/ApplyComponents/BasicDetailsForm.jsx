@@ -28,7 +28,9 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
         error = value ? "" : "Name is required.";
         break;
       case "mobile":
-        error = /^(\+91|0)?\d{10}$/.test(value) ? "" : "Mobile number must be 10 digits or start with +91 or 0.";
+        error = /^(\+91|0)?\d{10}$/.test(value)
+          ? ""
+          : "Mobile number must be 10 digits or start with +91 or 0.";
         break;
       case "gender":
         error = value ? "" : "Gender is required.";
@@ -48,9 +50,16 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
     validateField(id, value);
   };
 
+  const normalizePhoneNumber = (number) => {
+    // Remove leading '0' or '+91' if present
+    return number.replace(/^(\+91|0)/, "");
+  };
+
   const validate = () => {
     const newErrors = {};
-    Object.keys(formData).forEach((field) => validateField(field, formData[field]));
+    Object.keys(formData).forEach((field) =>
+      validateField(field, formData[field])
+    );
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -60,10 +69,11 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
     if (validate()) {
       setSending(true); // Set loading state
       try {
+        const normalizedMobile = normalizePhoneNumber(formData.mobile); // Normalize phone number
         const res = await axiosInstance.post("/login/send-otp", {
           name: formData.name,
           email: formData.email,
-          phoneNumber: formData.mobile,
+          phoneNumber: normalizedMobile, // Use normalized phone number
           gender: formData.gender,
           amount: formData.loanAmount,
         });
@@ -73,7 +83,7 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
           setApiError(message);
         } else {
           setApiError("");
-          await setOrderDetails(orderDetails)
+          await setOrderDetails(orderDetails);
           nextStep();
         }
       } catch (e) {
@@ -99,7 +109,9 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
         <div className="flex flex-col gap-6 mt-4">
           {/* Name Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="name">Name</label>
+            <label className="block text-sm text-gray-500" htmlFor="name">
+              Name
+            </label>
             <input
               id="name"
               type="text"
@@ -109,12 +121,16 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
               required
               className={inputStyle(errors.name)}
             />
-            {errors.name && <p className="mt-2 text-xs text-red-400">{errors.name}</p>}
+            {errors.name && (
+              <p className="mt-2 text-xs text-red-400">{errors.name}</p>
+            )}
           </div>
 
           {/* Mobile Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="mobile">Mobile</label>
+            <label className="block text-sm text-gray-500" htmlFor="mobile">
+              Mobile
+            </label>
             <input
               id="mobile"
               type="tel"
@@ -124,12 +140,16 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
               required
               className={inputStyle(errors.mobile)}
             />
-            {errors.mobile && <p className="mt-2 text-xs text-red-400">{errors.mobile}</p>}
+            {errors.mobile && (
+              <p className="mt-2 text-xs text-red-400">{errors.mobile}</p>
+            )}
           </div>
 
           {/* Gender Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="gender">Gender</label>
+            <label className="block text-sm text-gray-500" htmlFor="gender">
+              Gender
+            </label>
             <select
               id="gender"
               value={formData.gender}
@@ -142,12 +162,16 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-            {errors.gender && <p className="mt-2 text-xs text-red-400">{errors.gender}</p>}
+            {errors.gender && (
+              <p className="mt-2 text-xs text-red-400">{errors.gender}</p>
+            )}
           </div>
 
           {/* Email Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="email">Email</label>
+            <label className="block text-sm text-gray-500" htmlFor="email">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -157,12 +181,16 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
               required
               className={inputStyle(errors.email)}
             />
-            {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
+            {errors.email && (
+              <p className="mt-2 text-xs text-red-400">{errors.email}</p>
+            )}
           </div>
 
           {/* Loan Amount Input */}
           <div>
-            <label className="block text-sm text-gray-500" htmlFor="loanAmount">Loan Amount</label>
+            <label className="block text-sm text-gray-500" htmlFor="loanAmount">
+              Loan Amount
+            </label>
             <input
               id="loanAmount"
               type="range"

@@ -1,32 +1,32 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt, faCalendarAlt, faCheckCircle, faClock, faStore, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { faRocket, faMoneyBillWave, faShieldAlt, faHandshake, faMobileAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 
 export default function WhyEasyCapital() {
   const features = [
     {
       icon: faClock,
-      text: 'Apply in few minutes',
+      text: 'Quick Application Process',
     },
     {
-      icon: faBolt,
-      text: 'Fast Approval',
+      icon: faRocket,
+      text: 'Rapid Disbursement',
     },
     {
-      icon: faCalendarAlt,
-      text: 'Tenure up to 60 months',
+      icon: faMoneyBillWave,
+      text: 'Flexible Repayment Plans',
     },
     {
-      icon: faCalendarDay,
-      text: 'Get money in 2-4 working days',
+      icon: faMobileAlt,
+      text: 'Paperless and Hassle-Free',
     },
     {
-      icon: faStore,
-      text: 'No Branch Visit',
+      icon: faShieldAlt,
+      text: 'Secure and Reliable',
     },
     {
-      icon: faCheckCircle,
-      text: 'An ISO certified company',
+      icon: faHandshake,
+      text: 'Trusted by Many',
     },
   ];
 
@@ -35,7 +35,7 @@ export default function WhyEasyCapital() {
       <div className="container py-20 md:py-10 mx-auto max-w-[85%]">
         <div className="flex items-center justify-around gap-10 flex-col md:flex-row md:space-y-8">
           <h3 className="leading-20 text-white text-3xl font-semibold md:text-4xl md:leading-6">
-            Why EasyCapital?
+            Why Choose EasyCapital?
           </h3>
           <div className="grid gap-x-8 gap-y-14 grid-cols-2 md:gap-x-6 md:gap-y-8 lg:grid-cols-3">
             {features.map((item, index) => (

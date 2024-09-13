@@ -55,10 +55,13 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setRegisteration
     if (validate()) {
       setSending(true); // Set loading state
       try {
+        // Remove "0" or "+91" from the beginning of the mobile number
+        const sanitizedMobile = formData.mobile.replace(/^(\+91|0)/, "");
+
         const res = await axiosInstance.post("/registeration-requests/create", {
           name: formData.name,
           email: formData.email,
-          phoneNumber: formData.mobile,
+          phoneNumber: sanitizedMobile, // Use sanitized mobile number
           registerationServiceType: service,
         });
 
@@ -67,8 +70,8 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setRegisteration
           setApiError(message);
         } else {
           setApiError("");
-          await setOrderDetails(orderDetails)
-          await setRegisterationId(registeration)
+          await setOrderDetails(orderDetails);
+          await setRegisterationId(registeration);
           nextStep(); // Move to the next step if successful
         }
       } catch (e) {
@@ -136,9 +139,6 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setRegisteration
             />
             {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
           </div>
-
-
-
         </div>
         {apiError && <p className="mt-2 text-xs text-red-400">{apiError}</p>}
         <div className="flex justify-end mt-6">
