@@ -128,7 +128,7 @@ const RegistrationOverview = ({ type }) => {
 
     return (
         <div className="p-8 bg-gradient-to-br from-blue-50 to-white shadow-lg rounded-xl w-[80%] min-w-[320px] mx-auto mt-10">
-            <h2 className="text-3xl font-extrabold text-center mb-8 text-green-800">
+            <h2 className="text-3xl font-extrabold text-center mb-8 text-blue-800">
                 {type.replace('-', ' ').toUpperCase()}: Registration and Benefits
             </h2>
 
@@ -138,7 +138,7 @@ const RegistrationOverview = ({ type }) => {
                         key={index}
                         className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
                     >
-                        <h3 className="text-2xl font-semibold text-green-700 mb-2">{info.title}</h3>
+                        <h3 className="text-2xl font-semibold text-blue-700 mb-2">{info.title}</h3>
                         <p className="text-gray-700 leading-relaxed">{info.content}</p>
                     </section>
                 ))}

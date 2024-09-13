@@ -87,7 +87,7 @@ const Navbar = () => {
                 className={`fixed top-0 right-0 md:left-0 h-screen bg-white shadow-lg transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full md:-translate-x-full'
                     } z-30 lg:w-64 w-64`}
             >
-                <div className="flex items-center justify-between px-4 py-4 ">
+                <div className="flex items-center justify-between px-4 pt-4 pb-1 md:py-4 ">
                     {/* Sidebar Menu Icon + Logo */}
                     <div className="flex items-center md:w-auto w-full justify-between flex-row-reverse md:flex-row">
                         <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none">
