@@ -8,7 +8,7 @@ const LoanCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(1621212);
   const [tenure, setTenure] = useState(24);
   const [interestRate, setInterestRate] = useState(15.5);
-  
+
   const [formattedLoanAmount, setFormattedLoanAmount] = useState(formatNumber(1621212));
   const [formattedTenure, setFormattedTenure] = useState(24);
   const [formattedInterestRate, setFormattedInterestRate] = useState(15.5);
@@ -87,7 +87,7 @@ const LoanCalculator = () => {
           </div>
           <div className="flex flex-col items-center justify-between text-center space-y-8 md:space-y-6">
             <p className="text-lg font-semibold">Equated Monthly Installment</p>
-            <p className="text-3xl font-bold text-indigo-600">₹{formatNumber(Math.round(emi))}</p>
+            <p className="text-3xl font-bold text-blue-600">₹{formatNumber(Math.round(emi))}</p>
             <div className="p-6 border border-gray-300 rounded-xl shadow-md">
               <p className="text-lg font-semibold">Total Payable</p>
               <p className="text-2xl font-bold mt-2">₹{formatNumber(Math.round(totalPayable))}</p>
@@ -96,9 +96,9 @@ const LoanCalculator = () => {
               *Starting at 1% monthly reducing interest rate. Apply now to know your exact EMI & interest rate.
             </p>
             <Link href={'/apply'}>
-                <button className="bg-indigo-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-indigo-700 transition duration-200">
-                  Apply Now
-                </button>
+              <button className="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-700 transition duration-200">
+                Apply Now
+              </button>
             </Link>
           </div>
         </div>
