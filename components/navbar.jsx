@@ -153,7 +153,7 @@ const Navbar = () => {
                                 </span>
                             </li>
                             <li>
-                                <div onClick={() => toggleDropdown('businessLoan')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
+                                <div onClick={() => toggleDropdown('businessLoan')} className="mb-3 flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
                                     Business Loan
                                     <span className={`transform transition-transform ${businessLoanDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                                 </div>
@@ -166,7 +166,7 @@ const Navbar = () => {
                                 </ul>
                             </li>
                             <li>
-                                <div onClick={() => toggleDropdown('gst')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
+                                <div onClick={() => toggleDropdown('gst')} className="mb-3 flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
                                     GST Services
                                     <span className={`transform transition-transform ${gstDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                                 </div>
@@ -178,7 +178,7 @@ const Navbar = () => {
                                 </ul>
                             </li>
                             <li>
-                                <div onClick={() => toggleDropdown('registration')} className="flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
+                                <div onClick={() => toggleDropdown('registration')} className="mb-3 flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
                                     Registration Services
                                     <span className={`transform transition-transform ${registrationDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                                 </div>
