@@ -127,6 +127,7 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
                     <div key={index} className="w-10 h-10 md:h-14">
                       <input
                         className="w-full h-full flex flex-col items-center justify-center text-center outline-none rounded-xl border border-gray-200 text-lg bg-white text-black focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                        type="tel"
                         maxLength={1}
                         value={value}
                         onChange={(e) => handleChange(e, index)}
