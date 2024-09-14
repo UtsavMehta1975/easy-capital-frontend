@@ -14,6 +14,11 @@ const Navbar = () => {
     const sidebarRef = useRef(null);
 
     const toggleSidebar = () => {
+        if (sidebarOpen) {
+            setBusinessLoanDropdownOpen(false)
+            setGstDropdownOpen(false)
+            setRegistrationDropdownOpen(false)
+        }
         setSidebarOpen(!sidebarOpen);
     };
 

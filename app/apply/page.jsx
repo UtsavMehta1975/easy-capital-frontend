@@ -7,7 +7,7 @@ import SuccessMessage from "@/components/SuccessMessage";
 import React, { useEffect, useState } from "react";
 
 const ApplyPage = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
   const [orderDetails, setOrderDetails] = useState({})
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const ApplyPage = () => {
       case 3:
         return <AccountInfoForm nextStep={nextStep} />;
       case 4:
-        return <SuccessMessage verificationMessage={"We will match you with the right lender and the money will be credited within 2-3 days."} />;
+        return <SuccessMessage verificationMessage={"We will match with the right lender within 24 hours. Once you finalize the lender, money will be credited in 2-3 days"} />;
       default:
         return <BasicDetailsForm />;
     }
