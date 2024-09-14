@@ -6,12 +6,12 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-800 pt-14 pb-5 text-white">
+    <footer className=" bg-blue-800 py-14 text-white">
       <div className="container mx-auto max-w-[85%]">
-        <div className="flex flex-wrap text-center md:text-start justify-around gap-6">
-          <div className="col-span-1 flex flex-col gap-4 w-[240px]">
-            <h2 className="font-semibold text-[1.2rem]">About Us</h2>
-            <p className="font-light text-[0.9rem]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-4 lg:gap-20">
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
+            <h2 className=" font-semibold text-[1.2rem]">About Us</h2>
+            <p className="font-light text-[0.9rem] pr-0 md:pr-6 lg:pr-0">
               Your trusted partner for hassle-free loans. With transparent processes and quick approvals, we empower your financial journey. Simplify borrowing with Easy Capital today.
             </p>
             <div className="flex mt-4 items-center gap-4">
@@ -49,41 +49,35 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-4  w-[240px]">
-            <h2 className="font-semibold text-[1.2rem]">Business Loans</h2>
+          <div className="flex flex-col gap-4">
+            <h2 className=" font-semibold text-[1.2rem]">Our Products</h2>
             <ul className="font-light text-[0.9rem] flex flex-col gap-2">
-              <li><Link href="/products/business-loan">Business Loan</Link></li>
-              <li><Link href="/products/line-of-credit">Line of Credit</Link></li>
-              <li><Link href="/products/msme-loan">MSME Loan</Link></li>
-              <li><Link href="/products/secured-business-loan">Secured Business Loan</Link></li>
-              <li><Link href="/products/machinery-loan">Machinery Loan</Link></li>
-              <li><Link href="/products/business-loan-for-women">Business Loan for Women</Link></li>
-              <li><Link href="/products/business-ecommerce-loan">Business Ecommerce Loan</Link></li>
-              <li><Link href="/products/loan-against-property">Loan Against Property for Business</Link></li>
+              <li>
+                <Link href="/business-loan/unsecured-business-loan">Business Loan</Link>
+              </li>
+              <li>
+                <Link href="/gst-services/gst-registration">GST Services</Link>
+              </li>
+              <li>
+                <Link href="/registration-services/udhyam-certificate">Registration services</Link>
+              </li>
             </ul>
           </div>
-          <div className="flex flex-col gap-4  w-[240px]">
-            <h2 className="font-semibold text-[1.2rem]">GST Services</h2>
+          <div className="flex flex-col gap-4">
+            <h2 className=" font-semibold text-[1.2rem]">Company</h2>
             <ul className="font-light text-[0.9rem] flex flex-col gap-2">
-              <li><Link href="/gst-services/gst-registration">GST Registration</Link></li>
-              <li><Link href="/gst-services/gst-filling">GST Filing</Link></li>
-              <li><Link href="/gst-services/gst-registration-cancelation">GST Registration Cancellation</Link></li>
-              <li><Link href="/gst-services/gst-annual-return">GST Annual Return</Link></li>
+              <li>
+                <Link href="/about-us">About Us</Link>
+              </li>
+              <li>
+                <Link href="/contact-us">Contact Us</Link>
+              </li>
             </ul>
           </div>
-          <div className="flex flex-col gap-4  w-[240px]">
-            <h2 className="font-semibold text-[1.2rem]">Registration Services</h2>
-            <ul className="font-light text-[0.9rem] flex flex-col gap-2">
-              <li><Link href="/registration-services/udhyam-certificate">Udhyam Certificate</Link></li>
-              <li><Link href="/registration-services/fssai-registration">FSSAI Registration</Link></li>
-              <li><Link href="/registration-services/halal-registration">HALAL Registration</Link></li>
-              <li><Link href="/registration-services/trade-license">Trade License</Link></li>
-            </ul>
-          </div>
-          <div className="col-span-1 flex flex-col gap-4  w-[240px]">
-            <h2 className="font-semibold text-[1.2rem]">Have any questions?</h2>
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
+            <h2 className=" font-semibold text-[1.2rem]">Have any questions?</h2>
             <div className="flex items-center gap-4">
-              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-white text-xl h-14" />
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-white text-xl h-10" />
               <p className="font-light text-[0.9rem]">
                 Maruti Industrial Development Area, Plot 23, Sector 18, Gurugram, Haryana 122015
               </p>
