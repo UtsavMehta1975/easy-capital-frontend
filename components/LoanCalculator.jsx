@@ -55,14 +55,14 @@ const LoanCalculator = () => {
       <div className="bg-white shadow-xl rounded-3xl p-8 md:p-6">
         <div className="grid gap-12 md:gap-8 md:grid-cols-1 md:space-y-8 lg:grid-cols-2">
           <div>
-            <span className="block text-3xl text-center font-bold mb-4 md:text-lg md:text-start">How much are you looking for?</span>
+            <span className="block text-3xl text-center font-bold mb-4 md:text-start">How much are you looking for?</span>
             <p className="text-gray-600 text-center mb-8 md:text-sm md:text-start">
               Select your loan amount above and elevate your business.
             </p>
             <div className="space-y-8">
               {[
                 { label: 'Loan Amount', value: formattedLoanAmount, min: 1000000, max: 10000000, step: 10000 },
-                { label: 'Tenure (Months)', value: formattedTenure, min: 12, max: 60, step: 1 }, // Updated label to indicate tenure is in months
+                { label: 'Tenure (Months)', value: formattedTenure, min: 12, max: 60, step: 1 },
                 { label: 'Interest Rate', value: formattedInterestRate, min: 10, max: 33, step: 0.5 }
               ].map(({ label, value, min, max, step }) => (
                 <div key={label}>
