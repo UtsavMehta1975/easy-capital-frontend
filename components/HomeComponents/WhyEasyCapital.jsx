@@ -43,7 +43,7 @@ export default function WhyEasyCapital() {
                 <div className="min-w-16 md:min-w-12 flex items-center justify-center h-16 bg-white rounded-lg md:h-12">
                   <FontAwesomeIcon icon={item.icon} className="text-black h-6" />
                 </div>
-                <p className="text-sm text-white font-normal leading-8 md:text-lg md:leading-5">
+                <p className="text-sm text-white font-normal md:text-lg md:leading-5">
                   {item.text}
                 </p>
               </div>

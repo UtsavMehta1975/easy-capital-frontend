@@ -157,7 +157,7 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
                     className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
                     disabled={sending} // Disable button when loading
                   >
-                    {sending ? "Verifying..." : "Verify Account"}
+                    {sending ? "Verifying..." : "Verify number"}
                   </button>
                 </div>
 

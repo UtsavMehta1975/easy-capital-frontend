@@ -24,7 +24,7 @@ const HeroSection = () => {
             <div className="flex justify-center mt-10">
                 <Image
                     className="object-cover w-full h-96 rounded-xl lg:w-4/5"
-                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+                    src="/images/Hero.avif"
                     alt="Business Growth"
                     width={1600}
                     height={400}

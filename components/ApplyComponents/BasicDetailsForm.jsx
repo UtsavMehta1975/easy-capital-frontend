@@ -30,7 +30,7 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
       case "mobile":
         error = /^(\+91|0)?\d{10}$/.test(value)
           ? ""
-          : "Mobile number must be 10 digits or start with +91 or 0.";
+          : "Mobile number must be 10 digits.";
         break;
       case "gender":
         error = value ? "" : "Gender is required.";

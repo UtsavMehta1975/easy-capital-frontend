@@ -19,8 +19,9 @@ const AccountInfoForm = ({ nextStep }) => {
   const [errors, setErrors] = useState({});
 
   const validateField = (id, value) => {
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
     const errorMessages = {
-      pan: value.length === 10 ? "" : "PAN card number must be exactly 10 characters.",
+      pan: panRegex.test(value) ? "" : "PAN must be in the format ABCDE1234F.",
       businessType: value ? "" : "Business type is required.",
       shopName: value ? "" : "Shop name is required.",
       businessAge: value ? "" : "Business age is required.",
@@ -34,10 +35,16 @@ const AccountInfoForm = ({ nextStep }) => {
     setErrors((prevErrors) => ({ ...prevErrors, [id]: errorMessages[id] }));
   };
 
+
   const handleChange = ({ target: { id, value } }) => {
+    if (id === "pan" || id === "gstNumber") {
+      value = value.toUpperCase();
+    }
+
     setFormData((prev) => ({ ...prev, [id]: value }));
     validateField(id, value);
   };
+
 
   const validate = () => {
     Object.keys(formData).forEach((field) => validateField(field, formData[field]));
