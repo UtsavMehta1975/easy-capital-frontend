@@ -33,24 +33,24 @@ export default function SubAdminSignup() {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <div className="flex justify-center items-center min-h-[50vh] bg-gray-100">
+            <div className="bg-white p-8 rounded shadow-md min-w-[300px] max-w-[90vw]">
                 <h1 className="text-2xl font-bold text-center mb-6">Sub-admin Signup</h1>
                 <div className="space-y-4">
-                    <input
+                    {!otpSent && (<input
                         type="text"
                         placeholder="Enter name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full px-4 py-2 border rounded"
-                    />
-                    <input
+                    />)}
+                    {!otpSent && (<input
                         type="text"
                         placeholder="Enter phone number"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         className="w-full px-4 py-2 border rounded"
-                    />
+                    />)}
                     {otpSent && (
                         <input
                             type="text"

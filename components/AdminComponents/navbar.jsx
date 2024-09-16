@@ -24,7 +24,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile menu button */}
-                    <div className="flex lg:hidden">
+                    <div className="flex lg:hidden mr-3">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             type="button"

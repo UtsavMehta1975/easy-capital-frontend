@@ -46,8 +46,8 @@ export default function Login() {
 
 
     return (
-        <div className="flex justify-center items-center min-h-[50vh] bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <div className="flex justify-center items-center min-h-[50vh]  bg-gray-100">
+            <div className="bg-white p-8 rounded shadow-md min-w-[300px] max-w-[90vw] mx-auto">
                 <h1 className="text-2xl font-bold text-center mb-6">Admin Login</h1>
                 <div className="space-y-4">
                     {!otpSent && (<input
