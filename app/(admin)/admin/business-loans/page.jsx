@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axiosInstance from "@/utils/axios";
+import * as XLSX from "xlsx";
 
 export default function BusinessLoanRequests() {
     const [loanRequests, setLoanRequests] = useState([]);
@@ -33,6 +34,29 @@ export default function BusinessLoanRequests() {
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
+    // Function to export data to Excel
+    const exportToExcel = () => {
+        const formattedData = loanRequests.map(({ userId, name, mobile, email, details, createdAt, updatedAt }) => ({
+            Name: name,
+            Mobile: mobile,
+            Email: email,
+            "Business Name": details.shopName,
+            "Business Type": details.businessType,
+            City: details.city,
+            State: details.state,
+            Pincode: details.pincode,
+            "Created At": formatDate(createdAt),
+            "Updated At": formatDate(updatedAt),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(formattedData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Loan Requests");
+
+        // Export the Excel file
+        XLSX.writeFile(workbook, "BusinessLoanRequests.xlsx");
+    };
+
     return (
         <section className="container px-4 mx-auto">
             <div className="sm:flex sm:items-center sm:justify-between">
@@ -43,6 +67,12 @@ export default function BusinessLoanRequests() {
                     </div>
                     <p className="mt-1 text-sm text-gray-500">Manage all business loan requests.</p>
                 </div>
+                <button
+                    onClick={exportToExcel}
+                    className="px-4 py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                >
+                    Export to Excel
+                </button>
             </div>
 
             <div className="flex flex-col mt-6">

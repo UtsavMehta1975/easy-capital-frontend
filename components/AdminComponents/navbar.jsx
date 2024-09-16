@@ -62,15 +62,15 @@ export default function Navbar() {
                     <div className="flex flex-col md:flex-row md:mx-6">
                         <Link
                             className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 md:mx-4 md:my-0"
-                            href="/admin/business-loans"
-                        >
-                            Business Loans
-                        </Link>
-                        <Link
-                            className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 md:mx-4 md:my-0"
                             href="/admin/sub-admins"
                         >
                             Sub-admins
+                        </Link>
+                        <Link
+                            className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 md:mx-4 md:my-0"
+                            href="/admin/business-loans"
+                        >
+                            Business Loans
                         </Link>
                         <Link
                             className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 md:mx-4 md:my-0"

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axiosInstance from "@/utils/axios";
+import * as XLSX from "xlsx";
 
 export default function GstRequests() {
     const [gstRequests, setGstRequests] = useState([]);
@@ -33,6 +34,24 @@ export default function GstRequests() {
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
+    // Function to export data to Excel
+    const exportToExcel = () => {
+        const worksheet = XLSX.utils.json_to_sheet(gstRequests.map(req => ({
+            Name: req.name,
+            Mobile: req.mobile,
+            Email: req.email,
+            "GST Service Type": req.gstServiceType,
+            Verified: req.verified ? "Verified" : "Pending",
+            "Created At": formatDate(req.createdAt),
+            "Updated At": formatDate(req.updatedAt)
+        })));
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "GST Requests");
+
+        // Generate and download the Excel file
+        XLSX.writeFile(workbook, "gst_requests.xlsx");
+    };
+
     return (
         <section className="container px-4 mx-auto">
             <div className="sm:flex sm:items-center sm:justify-between">
@@ -43,6 +62,12 @@ export default function GstRequests() {
                     </div>
                     <p className="mt-1 text-sm text-gray-500">Manage all GST service requests.</p>
                 </div>
+                <button
+                    onClick={exportToExcel}
+                    className="px-4 py-2 text-sm text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                >
+                    Export to Excel
+                </button>
             </div>
 
             <div className="flex flex-col mt-6">
