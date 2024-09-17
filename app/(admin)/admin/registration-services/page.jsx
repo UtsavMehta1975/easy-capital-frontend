@@ -30,7 +30,7 @@ export default function RegistrationRequests() {
 
     // Function to format date and time
     const formatDate = (date) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
@@ -50,6 +50,19 @@ export default function RegistrationRequests() {
 
         // Generate and download the Excel file
         XLSX.writeFile(workbook, "registration_requests.xlsx");
+    };
+
+    // Function to delete a registration request by ID
+    const deleteRequest = async (id) => {
+        try {
+            await axiosInstance.delete(`/registeration-requests/delete/${id}`, {
+                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+            });
+            // Refresh the list after deletion
+            setRegistrationRequests(registrationRequests.filter(req => req._id !== id));
+        } catch (error) {
+            console.error("Error deleting registration request", error);
+        }
     };
 
     return (
@@ -84,6 +97,7 @@ export default function RegistrationRequests() {
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Verified</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Created At</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Updated At</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
@@ -111,6 +125,14 @@ export default function RegistrationRequests() {
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <div className="text-gray-600">{formatDate(updatedAt)}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <button
+                                                    onClick={() => deleteRequest(_id)}
+                                                    className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

@@ -28,12 +28,20 @@ export default function Login() {
             const response = await axiosInstance.post("/admin/login/verify", { phoneNumber, otp, orderId });
 
             if (response.data.success) {
-                // Store the token and role in session storage
-                sessionStorage.setItem("jwtToken", response.data.token);
-                sessionStorage.setItem("userRole", response.data.role); // Set user role in session storage
+                const userRole = response.data.role;
 
-                alert("Login successful");
-                router.push("/admin/sub-admins");
+                // Allow login only for admin (role 1) or sub-admin (role 2)
+                if (userRole === 1 || userRole === 2) {
+                    // Store the token and role in session storage
+                    sessionStorage.setItem("jwtToken", response.data.token);
+                    sessionStorage.setItem("userRole", userRole);
+
+                    alert("Login successful");
+                    router.push("/admin/sub-admins");
+                } else {
+                    // If user is not admin or sub-admin, show an alert
+                    alert("Access denied. Only admins or sub-admins can log in.");
+                }
             } else {
                 // Handle specific error messages from the response
                 alert(response.data.message || "An error occurred during login.");
@@ -43,6 +51,7 @@ export default function Login() {
             alert("An error occurred while verifying the OTP. Please try again later.");
         }
     };
+
 
 
     return (

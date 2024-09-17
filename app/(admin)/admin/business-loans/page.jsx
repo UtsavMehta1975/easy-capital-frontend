@@ -22,15 +22,29 @@ export default function BusinessLoanRequests() {
             const { data } = await axiosInstance.get("/get-users", {
                 headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
             });
+            console.log(data);
             setLoanRequests(data);
         } catch (error) {
             console.error("Error fetching loan requests", error);
         }
     };
 
-    // Function to format date and time
+    // Function to delete a loan request
+    const deleteLoanRequest = async (userId) => {
+        try {
+            await axiosInstance.delete(`/user/delete/${userId}`, {
+                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+            });
+            // Update state to remove the deleted request from the list
+            setLoanRequests(loanRequests.filter(request => request._id !== userId));
+        } catch (error) {
+            console.error("Error deleting loan request", error);
+        }
+    };
+
+    // Function to format date without time zone
     const formatDate = (date) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
@@ -40,11 +54,16 @@ export default function BusinessLoanRequests() {
             Name: name,
             Mobile: mobile,
             Email: email,
-            "Business Name": details.shopName,
-            "Business Type": details.businessType,
-            City: details.city,
-            State: details.state,
-            Pincode: details.pincode,
+            "Business Name": details.shopName || "",
+            "Business Type": details.businessType || "",
+            City: details.city || "",
+            State: details.state || "",
+            Pincode: details.pincode || "",
+            "PAN Number": details.pan || "",               // Show PAN number
+            "GST": details.gst || "",                      // Show GST availability
+            "GST Number": details.gstNumber || "",         // Show GST number
+            "Account Type": details.accountType || "",     // Show account type
+            "Business Age": details.businessAge || "",     // Show business age
             "Created At": formatDate(createdAt),
             "Updated At": formatDate(updatedAt),
         }));
@@ -90,13 +109,19 @@ export default function BusinessLoanRequests() {
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">City</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">State</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Pincode</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">PAN Number</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">GST</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">GST Number</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Account Type</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Business Age</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Created At</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Updated At</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {loanRequests.map(({ userId, name, mobile, email, details, createdAt, updatedAt }) => (
-                                        <tr key={userId}>
+                                    {loanRequests.map(({ _id, name, mobile, email, details, createdAt, updatedAt }) => (
+                                        <tr key={_id}>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <h2 className="font-medium text-gray-800">{name}</h2>
                                             </td>
@@ -107,25 +132,48 @@ export default function BusinessLoanRequests() {
                                                 <div className="text-gray-600">{email}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div className="text-gray-600">{details.shopName}</div>
+                                                <div className="text-gray-600">{details.shopName || ""}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div className="text-gray-600">{details.businessType}</div>
+                                                <div className="text-gray-600">{details.businessType || ""}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div className="text-gray-600">{details.city}</div>
+                                                <div className="text-gray-600">{details.city || ""}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div className="text-gray-600">{details.state}</div>
+                                                <div className="text-gray-600">{details.state || ""}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div className="text-gray-600">{details.pincode}</div>
+                                                <div className="text-gray-600">{details.pincode || ""}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{details.pan || ""}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{details.gst || ""}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{details.gstNumber || ""}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{details.accountType || ""}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{details.businessAge || ""}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <div className="text-gray-600">{formatDate(createdAt)}</div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <div className="text-gray-600">{formatDate(updatedAt)}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <button
+                                                    onClick={() => deleteLoanRequest(_id)}
+                                                    className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

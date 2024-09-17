@@ -28,9 +28,22 @@ export default function GstRequests() {
         }
     };
 
+    // Function to delete a GST request
+    const deleteGstRequest = async (id) => {
+        try {
+            await axiosInstance.delete(`/gst-requests/delete/${id}`, {
+                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+            });
+            // Update state to remove the deleted request from the list
+            setGstRequests(gstRequests.filter(request => request._id !== id));
+        } catch (error) {
+            console.error("Error deleting GST request", error);
+        }
+    };
+
     // Function to format date and time
     const formatDate = (date) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
@@ -84,6 +97,7 @@ export default function GstRequests() {
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Verified</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Created At</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Updated At</th>
+                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
@@ -111,6 +125,14 @@ export default function GstRequests() {
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <div className="text-gray-600">{formatDate(updatedAt)}</div>
+                                            </td>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <button
+                                                    onClick={() => deleteGstRequest(_id)}
+                                                    className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}
