@@ -9,7 +9,7 @@ export default function RegistrationRequests() {
     const router = useRouter();
 
     useEffect(() => {
-        const token = sessionStorage.getItem("jwtToken");
+        const token = localStorage.getItem("jwtToken");
         if (!token) {
             router.push("/admin/login");
         } else {
@@ -20,7 +20,7 @@ export default function RegistrationRequests() {
     const fetchRegistrationRequests = async () => {
         try {
             const { data } = await axiosInstance.get("/registeration-requests/all", {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             setRegistrationRequests(data.data);
         } catch (error) {
@@ -56,7 +56,7 @@ export default function RegistrationRequests() {
     const deleteRequest = async (id) => {
         try {
             await axiosInstance.delete(`/registeration-requests/delete/${id}`, {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             // Refresh the list after deletion
             setRegistrationRequests(registrationRequests.filter(req => req._id !== id));

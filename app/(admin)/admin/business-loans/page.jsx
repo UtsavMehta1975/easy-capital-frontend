@@ -9,7 +9,7 @@ export default function BusinessLoanRequests() {
     const router = useRouter();
 
     useEffect(() => {
-        const token = sessionStorage.getItem("jwtToken");
+        const token = localStorage.getItem("jwtToken");
         if (!token) {
             router.push("/admin/login");
         } else {
@@ -20,7 +20,7 @@ export default function BusinessLoanRequests() {
     const fetchLoanRequests = async () => {
         try {
             const { data } = await axiosInstance.get("/get-users", {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             console.log(data);
             setLoanRequests(data);
@@ -33,7 +33,7 @@ export default function BusinessLoanRequests() {
     const deleteLoanRequest = async (userId) => {
         try {
             await axiosInstance.delete(`/user/delete/${userId}`, {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             // Update state to remove the deleted request from the list
             setLoanRequests(loanRequests.filter(request => request._id !== userId));

@@ -33,8 +33,8 @@ export default function Login() {
                 // Allow login only for admin (role 1) or sub-admin (role 2)
                 if (userRole === 1 || userRole === 2) {
                     // Store the token and role in session storage
-                    sessionStorage.setItem("jwtToken", response.data.token);
-                    sessionStorage.setItem("userRole", userRole);
+                    localStorage.setItem("jwtToken", response.data.token);
+                    localStorage.setItem("userRole", userRole);
 
                     alert("Login successful");
                     router.push("/admin/sub-admins");

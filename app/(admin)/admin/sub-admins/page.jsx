@@ -9,12 +9,12 @@ export default function Dashboard() {
     const router = useRouter();
 
     useEffect(() => {
-        const token = sessionStorage.getItem("jwtToken");
+        const token = localStorage.getItem("jwtToken");
         if (!token) {
             router.push("/admin/login");
         } else {
             // Fetch user role from session storage
-            const role = sessionStorage.getItem("userRole");
+            const role = localStorage.getItem("userRole");
             setUserRole(role);
             fetchSubAdmins();
         }
@@ -23,7 +23,7 @@ export default function Dashboard() {
     const fetchSubAdmins = async () => {
         try {
             const { data } = await axiosInstance.get("/admin/subadmins", {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             setSubAdmins(data.subAdmins);
         } catch (error) {
@@ -34,7 +34,7 @@ export default function Dashboard() {
     const handleApprove = async (id) => {
         try {
             await axiosInstance.put(`/admin/approve/${id}`, {}, {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             alert("Sub-admin approved");
             fetchSubAdmins();
@@ -46,7 +46,7 @@ export default function Dashboard() {
     const handleDelete = async (id) => {
         try {
             await axiosInstance.delete(`/admin/subadmin/${id}`, {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             alert("Sub-admin deleted");
             fetchSubAdmins();

@@ -2,9 +2,20 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
+
+    const handleLogout = () => {
+        // Clear the token and userRole from localStorage
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("userRole");
+
+        // Redirect the user to the login page
+        router.push("/admin/login");
+    };
 
     return (
         <nav className="relative bg-white shadow mb-9">
@@ -59,7 +70,7 @@ export default function Navbar() {
                 <div
                     className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'block opacity-100 translate-x-0' : 'hidden opacity-0 -translate-x-full'}`}
                 >
-                    <div className="flex flex-col md:flex-row md:mx-6">
+                    <div className="flex flex-col items-center md:flex-row md:mx-6">
                         <Link
                             className="my-2 text-gray-700 transition-colors duration-300 transform hover:text-blue-500 md:mx-4 md:my-0"
                             href="/admin/sub-admins"
@@ -84,6 +95,14 @@ export default function Navbar() {
                         >
                             Registration Services
                         </Link>
+
+                        {/* Logout button */}
+                        <button
+                            onClick={handleLogout}
+                            className="my-2 text-white bg-blue-500 py-1 px-2 rounded transition-colors duration-300 transform hover:bg-blue-700 md:mx-4 md:my-0"
+                        >
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>

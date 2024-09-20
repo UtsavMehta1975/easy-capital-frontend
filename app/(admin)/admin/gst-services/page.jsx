@@ -9,7 +9,7 @@ export default function GstRequests() {
     const router = useRouter();
 
     useEffect(() => {
-        const token = sessionStorage.getItem("jwtToken");
+        const token = localStorage.getItem("jwtToken");
         if (!token) {
             router.push("/admin/login");
         } else {
@@ -20,7 +20,7 @@ export default function GstRequests() {
     const fetchGstRequests = async () => {
         try {
             const { data } = await axiosInstance.get("/gst-requests/all", {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             setGstRequests(data.data);
         } catch (error) {
@@ -32,7 +32,7 @@ export default function GstRequests() {
     const deleteGstRequest = async (id) => {
         try {
             await axiosInstance.delete(`/gst-requests/delete/${id}`, {
-                headers: { authorization: `Bearer ${sessionStorage.getItem("jwtToken")}` },
+                headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
             // Update state to remove the deleted request from the list
             setGstRequests(gstRequests.filter(request => request._id !== id));
