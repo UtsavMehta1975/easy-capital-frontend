@@ -32,14 +32,14 @@ export default function WhyEasyCapital() {
 
   return (
     <div className="bg-blue-800 my-3">
-      <div className="container py-20 md:py-10 mx-auto max-w-[85%]">
+      <div className=" py-20 md:py-10 mx-auto max-w-[85%]">
         <div className="flex items-center justify-around gap-10 flex-col md:flex-row md:space-y-8">
           <h3 className="leading-20 text-white text-3xl font-semibold md:text-4xl md:leading-6">
             Why Choose EasyCapital?
           </h3>
           <div className="grid gap-x-8 gap-y-14 grid-cols-2 md:gap-x-6 md:gap-y-8 lg:grid-cols-3">
             {features.map((item, index) => (
-              <div key={index} className="flex items-center space-x-5 md:space-x-3">
+              <div key={index} className="flex flex-col text-center sm:flex-row sm:text-start items-center gap-3">
                 <div className="min-w-16 md:min-w-12 flex items-center justify-center h-16 bg-white rounded-lg md:h-12">
                   <FontAwesomeIcon icon={item.icon} className="text-black h-6" />
                 </div>

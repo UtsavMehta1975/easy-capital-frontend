@@ -122,7 +122,7 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
           <div>
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col space-y-16">
-                <div className="flex flex-row gap-2 items-center justify-between mx-auto w-full max-w-xs">
+                <div className="flex flex-row gap-1 sm:gap-2 items-center justify-between mx-auto w-full max-w-xs">
                   {otp.map((value, index) => (
                     <div key={index} className="w-10 h-10 md:h-14">
                       <input

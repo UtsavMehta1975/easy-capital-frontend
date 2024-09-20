@@ -45,7 +45,7 @@ const OfferingCard = ({ imgSrc, icon, title, description, link }) => {
 
 const OfferingsSection = () => {
   return (
-    <div className="container mx-auto">
+    <div className="max-w-[90%] mx-auto">
       <div className="flex flex-col items-center gap-2">
         <h2 className="w-full font-bold text-center text-[2.5rem]">Our Offerings</h2>
         <p className="font-light lg:w-2/3 text-[1rem] text-center">
