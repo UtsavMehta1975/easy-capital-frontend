@@ -11,15 +11,25 @@ const Partners = () => {
   ];
 
   return (
-    <section id='patners' className="w-full pt-10 pb-20 bg-gray-100">
-      <div className="max-w-85% mx-auto px-4">
-        <div className="flex flex-col items-center gap-6">
-          <h2 className="text-5xl font-bold text-center text-gray-800 border-b-2 border-black pb-4">Our Partners</h2>
+    <section id='partners' className="w-full py-20 bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200">
+      <div className="max-w-screen-xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-5xl font-bold text-blue-600 mb-4">Our Partners</h2>
+          <p className="text-lg text-gray-600">We collaborate with RBI Approved banks and NBFCs to offer you great products at the best rates.</p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {partners.map((partner, index) => (
-            <div key={index} className="w-3/4 sm:w-1/3 md:w-1/3 lg:w-1/6 flex items-center justify-center">
-              <Image className="w-full h-auto object-contain" src={partner.src} alt={partner.alt} width={150} height={100} />
+            <div
+              key={index}
+              className="bg-white p-4 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex justify-center items-center"
+            >
+              <Image
+                className="object-contain"
+                src={partner.src}
+                alt={partner.alt}
+                width={200}
+                height={120}
+              />
             </div>
           ))}
         </div>

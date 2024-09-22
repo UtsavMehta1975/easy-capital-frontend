@@ -16,8 +16,8 @@ export default function Home() {
       <LoanCalculator />
       <HowItWorks />
       <WhyEasyCapital />
-      <Testimonials />
       <Partners />
+      <Testimonials />
       <FAQSection />
     </main>
   );

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import autoplay from 'embla-carousel-autoplay';
@@ -43,25 +43,27 @@ const Testimonials = () => {
     }, [emblaApi, onSelect]);
 
     return (
-        <section className="bg-white">
+        <section className="bg-gradient-to-tr from-blue-50 to-blue-200 py-16">
             <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
-                <h2 className="text-5xl font-bold text-blue-500 mb-4">Success Stories</h2>
-                <p className="mb-8 text-lg text-gray-700">Here are few stories from our satisfied clients who have successfully secured loans with us. Our clients rave about our efficient loan process, competitive rates, and exceptional customer service. Explore their experiences to see how Easy Capital can help you achieve your financial goals with confidence and ease</p>
+                <h2 className="text-5xl font-bold text-blue-600 mb-4">Success Stories</h2>
+                <p className="mb-8 text-lg text-gray-700">
+                    Here are few stories from our satisfied clients who have successfully secured loans with us.
+                </p>
 
                 <div className="embla" ref={emblaRef}>
                     <div className="embla__container">
                         {testimonials.map((testimonial, index) => (
                             <div className="embla__slide" key={index}>
-                                <figure className="max-w-screen-md mx-auto cursor-default shadow-md shadow-slate-500 rounded p-4">
+                                <figure className="max-w-screen-md mx-auto cursor-default bg-white rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
                                     <svg className="h-12 mx-auto mb-3 text-blue-500" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" />
                                     </svg>
                                     <blockquote>
-                                        <p className="md:text-2xl text-md font-medium text-gray-900">{testimonial.quote}</p>
+                                        <p className="text-lg md:text-2xl font-medium text-gray-900">{testimonial.quote}</p>
                                     </blockquote>
                                     <figcaption className="flex items-center justify-center mt-6 space-x-3">
-                                        <div className="pr-3 font-medium text-gray-900 border-r border-gray-500">{testimonial.name}</div>
-                                        <div className="pl-0 text-sm font-light text-gray-500">{testimonial.location}</div>
+                                        <div className="pr-3 font-semibold text-gray-900 border-r border-gray-400">{testimonial.name}</div>
+                                        <div className=" text-sm text-gray-500">{testimonial.location}</div>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -69,7 +71,7 @@ const Testimonials = () => {
                     </div>
                 </div>
 
-                <div className="embla__dots">
+                <div className="embla__dots mt-8">
                     {testimonials.map((_, index) => (
                         <button
                             key={index}
@@ -95,18 +97,21 @@ const Testimonials = () => {
                 .embla__dots {
                     display: flex;
                     justify-content: center;
-                    margin-top: 1rem;
                 }
                 .embla__dot {
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
                     margin: 0 0.5rem;
-                    background-color: #ccc;
+                    background-color: #cbd5e1;
                     cursor: pointer;
+                    transition: background-color 0.3s;
                 }
                 .embla__dot.is-selected {
-                    background-color: #1e3a8a; /* Tailwind's blue-500 */
+                    background-color: #1e3a8a;
+                }
+                .embla__dot:hover {
+                    background-color: #4f46e5;
                 }
             `}</style>
         </section>
