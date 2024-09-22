@@ -6,6 +6,7 @@ import Partners from "@/components/Partners";
 import WhyEasyCapital from "@/components/HomeComponents/WhyEasyCapital";
 import Image from "next/image";
 import FAQSection from "@/components/FAQSection";
+import Testimonials from "@/components/HomeComponents/Testimonials";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <LoanCalculator />
       <HowItWorks />
       <WhyEasyCapital />
+      <Testimonials />
       <Partners />
       <FAQSection />
     </main>
