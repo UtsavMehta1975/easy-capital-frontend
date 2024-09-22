@@ -5,13 +5,13 @@ import { Player } from '@lottiefiles/react-lottie-player';
 
 const HowItWorks = () => {
     return (
-        <div className=" container flex flex-col lg:flex-row items-center gap-10 mx-auto my-5">
+        <div className=" container flex flex-col lg:flex-row items-center gap-10 mx-auto my-5 mb-20">
             <div className='hidden lg:block lg:w-1/2 items-center bg-[#BFE0FF] rounded-lg'>
                 <Player
                     src="/animations/how-it-works.json"
                     loop
                     autoplay
-                    style={{ height: '500px'}}
+                    style={{ height: '500px' }}
                 />
             </div>
 

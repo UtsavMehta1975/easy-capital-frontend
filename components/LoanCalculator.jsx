@@ -9,96 +9,145 @@ const LoanCalculator = () => {
   const [tenure, setTenure] = useState(24); // Tenure in months
   const [interestRate, setInterestRate] = useState(15.5);
 
-  const [formattedLoanAmount, setFormattedLoanAmount] = useState(formatNumber(1621212));
-  const [formattedTenure, setFormattedTenure] = useState(24); // Tenure in months
-  const [formattedInterestRate, setFormattedInterestRate] = useState(15.5);
+  const [emi, setEmi] = useState(0);
+  const [totalPayable, setTotalPayable] = useState(0);
 
   useEffect(() => {
-    setFormattedLoanAmount(formatNumber(loanAmount));
-  }, [loanAmount]);
-
-  useEffect(() => {
-    setFormattedTenure(tenure); // Updating formatted tenure when tenure state changes
-  }, [tenure]);
-
-  useEffect(() => {
-    setFormattedInterestRate(interestRate);
-  }, [interestRate]);
-
-  useEffect(() => {
-    // Calculate EMI and Total Payable whenever loanAmount, tenure or interestRate changes
-    const emi = calculateEMI(loanAmount, tenure, interestRate);
-    const totalPayable = emi * tenure;
-
-    setFormattedLoanAmount(formatNumber(loanAmount));
-    setFormattedTenure(tenure);
-    setFormattedInterestRate(interestRate);
-    setEmi(emi);
-    setTotalPayable(totalPayable);
+    const emiValue = calculateEMI(loanAmount, tenure, interestRate);
+    setEmi(emiValue);
+    setTotalPayable(emiValue * tenure);
   }, [loanAmount, tenure, interestRate]);
 
   const calculateEMI = (principal, tenure, annualRate) => {
     const monthlyRate = annualRate / 12 / 100;
     const numberOfMonths = tenure;
-    return (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfMonths)) / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
+    return (
+      (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfMonths)) /
+      (Math.pow(1 + monthlyRate, numberOfMonths) - 1)
+    );
   };
-
-  const [emi, setEmi] = useState(calculateEMI(loanAmount, tenure, interestRate));
-  const [totalPayable, setTotalPayable] = useState(emi * tenure);
 
   const handleLoanAmountChange = (e) => setLoanAmount(Number(e.target.value));
   const handleTenureChange = (e) => setTenure(Number(e.target.value)); // Tenure in months
   const handleInterestRateChange = (e) => setInterestRate(Number(e.target.value));
 
+  const updateSliderStyle = (e, min, max) => {
+    const val = ((e.target.value - min) / (max - min)) * 100;
+    e.target.style.background = `linear-gradient(to right, #ffffff ${val}%, #90cdf4 ${val}%)`; // White for filled, darker blue for unfilled
+  };
+
   return (
-    <div className="container mx-auto py-20 md:py-10 px-4">
-      <div className="bg-white shadow-xl rounded-3xl p-8 md:p-6">
-        <div className="grid gap-12 md:gap-8 md:grid-cols-1 md:space-y-8 lg:grid-cols-2">
+    <div className="container mx-auto py-20 px-4">
+      <div className="bg-gradient-to-r from-blue-500 to-blue-300 shadow-xl rounded-3xl p-10">
+        <div className="grid gap-12 md:grid-cols-2">
           <div>
-            <span className="block text-3xl text-center font-bold mb-4 md:text-start">How much are you looking for?</span>
-            <p className="text-gray-600 text-center mb-8 md:text-sm md:text-start">
-              Select your loan amount above and elevate your business.
+            <h2 className="text-4xl font-bold text-white text-center mb-6 md:text-left">
+              Calculate Your Loan
+            </h2>
+            <p className="text-gray-100 text-center mb-8 md:text-left">
+              Adjust the amount, tenure, and interest rate to calculate your monthly payments and
+              total amount payable.
             </p>
-            <div className="space-y-8">
+            <div className="space-y-10">
               {[
-                { label: 'Loan Amount', value: formattedLoanAmount, min: 1000000, max: 10000000, step: 10000 },
-                { label: 'Tenure (Months)', value: formattedTenure, min: 12, max: 60, step: 1 },
-                { label: 'Interest Rate', value: formattedInterestRate, min: 10, max: 33, step: 0.5 }
-              ].map(({ label, value, min, max, step }) => (
+                {
+                  label: 'Loan Amount',
+                  value: loanAmount,
+                  min: 1000000,
+                  max: 10000000,
+                  step: 10000,
+                  unit: '₹',
+                  onChange: handleLoanAmountChange,
+                },
+                {
+                  label: 'Tenure (Months)',
+                  value: tenure,
+                  min: 12,
+                  max: 60,
+                  step: 1,
+                  unit: 'months',
+                  onChange: handleTenureChange,
+                },
+                {
+                  label: 'Interest Rate',
+                  value: interestRate,
+                  min: 10,
+                  max: 33,
+                  step: 0.5,
+                  unit: '%',
+                  onChange: handleInterestRateChange,
+                },
+              ].map(({ label, value, min, max, step, unit, onChange }) => (
                 <div key={label}>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex justify-between mb-2 text-white">
                     <p className="text-lg font-semibold">{label}</p>
-                    <div className="bg-gray-200 flex items-center justify-center w-32 h-10 rounded-full">
+                    <div className="bg-white bg-opacity-20 rounded-full px-4 py-2">
                       <p className="text-lg font-bold">
-                        {label === 'Interest Rate' ? `${value}%` : label === 'Tenure (Months)' ? `${value} months` : `₹${value}`}
+                        {unit === '₹'
+                          ? `₹${formatNumber(value)}`
+                          : `${value} ${unit}`}
                       </p>
                     </div>
                   </div>
                   <input
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    className="w-full h-3 rounded-lg appearance-none cursor-pointer"
+                    style={{
+                      background: `linear-gradient(to right, #ffffff ${((value - min) / (max - min)) * 100}%, #90cdf4 ${((value - min) / (max - min)) * 100}%)`,
+                    }}
                     type="range"
                     min={min}
                     max={max}
                     step={step}
-                    value={label === 'Loan Amount' ? loanAmount : label === 'Tenure (Months)' ? tenure : interestRate}
-                    onChange={label === 'Loan Amount' ? handleLoanAmountChange : label === 'Tenure (Months)' ? handleTenureChange : handleInterestRateChange}
+                    value={value}
+                    onChange={(e) => {
+                      onChange(e);
+                      updateSliderStyle(e, min, max);
+                    }}
                   />
+                  <style jsx>{`
+                    input[type='range']::-webkit-slider-thumb {
+                      -webkit-appearance: none;
+                      appearance: none;
+                      width: 24px;
+                      height: 24px;
+                      border-radius: 50%; /* Circle shape */
+                      background: #3b82f6; /* Blue color */
+                      cursor: pointer;
+                      transition: background 0.3s;
+                    }
+                    input[type='range']::-moz-range-thumb {
+                      width: 24px;
+                      height: 24px;
+                      border-radius: 50%; /* Circle shape */
+                      background: #3b82f6; /* Blue color */
+                      cursor: pointer;
+                      transition: background 0.3s;
+                    }
+                  `}</style>
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex flex-col items-center justify-between text-center space-y-8 md:space-y-6">
-            <p className="text-lg font-semibold">Equated Monthly Installment</p>
-            <p className="text-3xl font-bold text-blue-600">₹{formatNumber(Math.round(emi))}</p>
-            <div className="p-6 border border-gray-300 rounded-xl shadow-md">
-              <p className="text-lg font-semibold">Total Payable</p>
-              <p className="text-2xl font-bold mt-2">₹{formatNumber(Math.round(totalPayable))}</p>
+
+          <div className="flex flex-col items-center justify-around bg-white rounded-3xl p-10 text-center shadow-xl">
+            <div>
+              <p className="text-lg font-semibold text-gray-700">Estimated EMI</p>
+              <p className="text-4xl font-bold text-blue-600 my-4">
+                ₹{formatNumber(Math.round(emi))}
+              </p>
             </div>
-            <p className="text-sm text-gray-600">
-              *Starting at 1% monthly reducing interest rate. Apply now to know your exact EMI & interest rate.
+            <div className="p-6 border border-gray-300 rounded-xl shadow-md w-full">
+              <p className="text-lg font-semibold text-gray-700">Total Payable</p>
+              <p className="text-2xl font-bold text-gray-900 mt-2">
+                ₹{formatNumber(Math.round(totalPayable))}
+              </p>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">
+              *Starting at 1% monthly reducing interest rate. Apply now to know your exact EMI &
+              interest rate.
             </p>
-            <Link href={'/apply'}>
-              <button className="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-700 transition duration-200">
+            <Link href="/apply">
+              <button className="mt-6 bg-blue-600 text-white py-3 px-8 rounded-full font-semibold shadow-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition transform hover:scale-105">
                 Apply Now
               </button>
             </Link>

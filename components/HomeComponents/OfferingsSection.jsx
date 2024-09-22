@@ -28,16 +28,16 @@ const offerings = [
 const OfferingCard = ({ imgSrc, icon, title, description, link }) => {
   return (
     <Link href={link}>
-      <div className="group cursor-pointer w-full max-w-[320px] rounded-md py-6 flex flex-col items-center text-center items-between h-full gap-6">
-        <div className="h-[5rem] w-[5rem] bg-blue-600 rounded-full flex justify-center items-center">
+      <div className="group cursor-pointer w-full max-w-[320px] rounded-lg p-6 flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white transform hover:scale-105">
+        <div className="h-16 w-16 bg-blue-600 rounded-full flex justify-center items-center">
           {imgSrc ? (
             <Image className="max-w-[3rem] invert-[100%] duration-[500ms]" src={imgSrc} alt={title} width={80} height={80} />
           ) : (
-            <FontAwesomeIcon icon={icon} className="text-white text-4xl h-10 w-10" />
+            <FontAwesomeIcon icon={icon} className="text-white text-4xl h-8" />
           )}
         </div>
-        <h2 className="text-[1.2rem] font-semibold">{title}</h2>
-        <p className="text-[1rem] font-light">{description}</p>
+        <h2 className="text-lg font-semibold text-gray-800 transition duration-200 group-hover:text-blue-600">{title}</h2>
+        <p className="text-sm font-light text-gray-600 transition duration-200 group-hover:text-gray-800">{description}</p>
       </div>
     </Link>
   );
@@ -45,26 +45,27 @@ const OfferingCard = ({ imgSrc, icon, title, description, link }) => {
 
 const OfferingsSection = () => {
   return (
-    <div className="max-w-[90%] mx-auto">
-      <div className="flex flex-col items-center gap-2">
-        <h2 className="w-full font-bold text-center text-[2.5rem]">Our Offerings</h2>
-        <p className="font-light lg:w-2/3 text-[1rem] text-center">
+    <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="flex flex-col items-center gap-4">
+        <h2 className="font-bold text-5xl text-gray-800 mb-2">
+          Our Offerings
+          <span className="block h-1 w-16 bg-blue-600 mt-2 mx-auto rounded-md"></span>
+        </h2>
+        <p className="font-light lg:w-2/3 text-md text-center text-gray-700 transition duration-300 transform hover:scale-105">
           Choose from a wide range of financial solutions tailored to suit your needs. We understand that every individual has unique requirements, which is why we have curated an impressive selection of products designed to cater to various purposes and budgets.
         </p>
       </div>
-      <div className="flex flex-col items-center">
-        <div className="flex items-center justify-around flex-col md:flex-row gap-6 mt-14">
-          {offerings.map((offering, index) => (
-            <OfferingCard
-              key={index}
-              imgSrc={offering.imgSrc}
-              icon={offering.icon}
-              title={offering.title}
-              description={offering.description}
-              link={offering.link}
-            />
-          ))}
-        </div>
+      <div className="flex items-center justify-center flex-wrap gap-6 mt-10">
+        {offerings.map((offering, index) => (
+          <OfferingCard
+            key={index}
+            imgSrc={offering.imgSrc}
+            icon={offering.icon}
+            title={offering.title}
+            description={offering.description}
+            link={offering.link}
+          />
+        ))}
       </div>
     </div>
   );

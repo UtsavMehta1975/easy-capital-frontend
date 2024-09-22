@@ -9,7 +9,10 @@
   box-sizing: border-box;
 }
 
-
+body {
+  background-image: radial-gradient(circle, #f0f0f0 20%, transparent 20%), radial-gradient(circle, #f0f0f0 20%, transparent 20%);
+  background-size: 20px 20px;
+}
 
 @keyframes slideInFromTop {
   from {
