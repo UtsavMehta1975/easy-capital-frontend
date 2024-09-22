@@ -1,7 +1,7 @@
 import axiosInstance from "@/utils/axios";
 import React, { useState, useEffect, useRef } from "react";
 
-const OTPVerification = ({ nextStep, orderDetails, store }) => {
+const OTPVerification = ({ prevStep, nextStep, orderDetails, store }) => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const [isChecked, setIsChecked] = useState(false); // State to track checkbox
@@ -45,7 +45,6 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
       console.error("No token provided");
     }
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,8 +114,18 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
             <div className="font-semibold text-3xl">
               <p>OTP Verification</p>
             </div>
-            <div className="flex flex-row text-sm font-medium text-gray-400">
+            <div className="flex flex-col text-sm font-medium text-gray-400">
               <p>We have sent a code to {orderDetails.phoneNumber}</p>
+              <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
+                <p>Entered the wrong number?</p>{" "}
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  className="flex flex-row items-center text-blue-500"
+                >
+                  Change number
+                </button>
+              </div>
             </div>
           </div>
 
@@ -173,6 +182,8 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
                     {sending ? "Resending..." : "Resend"}
                   </button>
                 </div>
+
+
               </div>
             </form>
           </div>

@@ -20,13 +20,16 @@ const ApplyPage = () => {
   const nextStep = () => {
     setStep(step + 1)
   }
+  const prevStep = () => {
+    setStep(step - 1)
+  }
 
   const renderStep = () => {
     switch (step) {
       case 1:
         return <BasicDetailsForm nextStep={nextStep} setOrderDetails={setOrderDetails} />;
       case 2:
-        return <OTPVerification nextStep={nextStep} orderDetails={orderDetails} store={true} />;
+        return <OTPVerification nextStep={nextStep} prevStep={prevStep} orderDetails={orderDetails} store={true} />;
       case 3:
         return <AccountInfoForm nextStep={nextStep} />;
       case 4:
