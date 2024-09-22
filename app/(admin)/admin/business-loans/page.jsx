@@ -22,8 +22,7 @@ export default function BusinessLoanRequests() {
             const { data } = await axiosInstance.get("/get-users", {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            console.log(data);
-            setLoanRequests(data);
+            setLoanRequests(data.filter(({ details }) => details));
         } catch (error) {
             console.error("Error fetching loan requests", error);
         }

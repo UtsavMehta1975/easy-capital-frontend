@@ -121,7 +121,7 @@ const Navbar = () => {
                             <ul className={`absolute bg-white shadow-lg mt-2 space-y-2 transition-all duration-300 overflow-hidden text-sm w-max  ${registrationDropdownOpen ? 'border border-gray-200 max-h-96' : 'max-h-0'}`}>
                                 <li><Link href="/registration-services/udhyam-certificate" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Udhyam Certificate</Link></li>
                                 <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">FSSAI Registration</Link></li>
-                                <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">HALAL Registration</Link></li>
+                                <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Halal Registration</Link></li>
                                 <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Trade License</Link></li>
                             </ul>
                         </div>
@@ -190,7 +190,7 @@ const Navbar = () => {
                                 <ul className={`pl-4 space-y-2 transition-all duration-500 overflow-hidden ${registrationDropdownOpen ? 'max-h-96' : 'max-h-0'}`}>
                                     <li><Link href="/registration-services/udhyam-certificate" className="text-gray-800 hover:text-blue-500">Udhyam Certificate</Link></li>
                                     <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500">FSSAI Registration</Link></li>
-                                    <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500">HALAL Registration</Link></li>
+                                    <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500">Halal Registration</Link></li>
                                     <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500">Trade License</Link></li>
                                 </ul>
                             </li>
