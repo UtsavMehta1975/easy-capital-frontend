@@ -19,6 +19,7 @@ const ApplyPage = () => {
 
   const nextStep = () => {
     setStep(step + 1)
+    window.scrollTo(0, 0);
   }
   const prevStep = () => {
     setStep(step - 1)

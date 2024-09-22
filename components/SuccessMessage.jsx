@@ -69,9 +69,9 @@ const SuccessMessage = ({ verificationMessage, gstId, registerationId }) => {
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Application Submitted Successfully</h2>
                 {verificationMessage}
             </div>
-            {(!gstId && !registerationId) && (<p className="text-gray-600 text-base">
+            {(!gstId && !registerationId) && (
                 <Partners />
-            </p>)}
+            )}
         </>
     );
 };
