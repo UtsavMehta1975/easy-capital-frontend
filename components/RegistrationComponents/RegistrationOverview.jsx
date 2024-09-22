@@ -117,6 +117,48 @@ const infoData = {
             content: "Operating a business without a Trade License can lead to penalties, fines, and legal action. The municipal authority may also order the closure of the business until the proper license is obtained."
         }
     ],
+    "startup-india": [
+        {
+            title: "What is the Startup India initiative?",
+            content: "Startup India is a Government of India initiative aimed at promoting innovation, creating jobs, and encouraging entrepreneurship by supporting startups with various incentives, funding, and simplified regulations."
+        },
+        {
+            title: "Who is eligible to register as a startup under the Startup India initiative?",
+            content: "A startup must be registered in India as a private limited company, partnership firm, or limited liability partnership (LLP), be less than 10 years old from the date of incorporation, and have an annual turnover not exceeding ₹100 crore in any preceding financial year."
+        },
+        {
+            title: "What qualifies a business as a startup under the Startup India scheme?",
+            content: "The business must work towards innovation, development, deployment, or commercialization of new products, processes, or services driven by technology or intellectual property. It should also create or improve existing solutions."
+        },
+        {
+            title: "What documents are required for Startup India registration?",
+            content: "Key documents include:\nCertificate of Incorporation/Registration\nDirector Identification Number (DIN) or Partner Identification Number (PIN)\nPAN card of the entity\nProof of funding (if applicable)\nA brief description of the innovative nature of the business"
+        },
+        {
+            title: "How can I apply for Startup India recognition?",
+            content: "The application can be submitted online via the Startup India website, where you need to fill in the required details, upload documents, and provide a self-declaration regarding the startup’s innovation and eligibility."
+        },
+        {
+            title: "What are the benefits of registering under Startup India?",
+            content: "Benefits include tax exemptions, access to government schemes, easier public procurement, fast-tracking of patent applications, funding opportunities, and various other incentives from the government."
+        },
+        {
+            title: "What is the tax exemption available to startups?",
+            content: "Recognized startups can avail of income tax exemption for three consecutive financial years within their first 10 years of operation, as long as they meet certain conditions."
+        },
+        {
+            title: "Can an existing business register under Startup India?",
+            content: "Yes, if it meets the eligibility criteria, including being less than 10 years old, having an annual turnover below ₹100 crore, and working towards innovation."
+        },
+        {
+            title: "How long does it take to get Startup India recognition?",
+            content: "The recognition process usually takes 2-3 weeks after submission of the application, provided all documents and information are in order."
+        },
+        {
+            title: "Can foreign nationals register their startups under Startup India?",
+            content: "Yes, foreign nationals can register a startup in India, but the company must be incorporated and operating in India and meet all other eligibility criteria."
+        }
+    ]
 }
 
 const RegistrationOverview = ({ type }) => {

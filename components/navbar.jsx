@@ -123,6 +123,7 @@ const Navbar = () => {
                                 <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">FSSAI Registration</Link></li>
                                 <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Halal Registration</Link></li>
                                 <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Trade License</Link></li>
+                                <li><Link href="/registration-services/startup-india" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Startup India</Link></li>
                             </ul>
                         </div>
 
@@ -192,6 +193,7 @@ const Navbar = () => {
                                     <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500">FSSAI Registration</Link></li>
                                     <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500">Halal Registration</Link></li>
                                     <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500">Trade License</Link></li>
+                                    <li><Link href="/registration-services/startup-india" className="text-gray-800 hover:text-blue-500">Startup India</Link></li>
                                 </ul>
                             </li>
                             <li>
