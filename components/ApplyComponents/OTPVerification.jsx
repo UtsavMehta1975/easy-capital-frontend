@@ -64,6 +64,7 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
     setSending(true); // Set loading state
     try {
       // Call verifyOTP API
+      console.log(orderDetails)
       const response = await axiosInstance.post("/login/verify-otp", {
         otp: otpValue,
         ...orderDetails
@@ -109,24 +110,24 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
   return (
     <div className="min-w-[320px] w-[45%] p-6 relative flex rounded-lg flex-col justify-center overflow-hidden bg-gray-50 py-12">
       <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
-        <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
+        <div className="mx-auto flex w-full max-w-md flex-col space-y-8">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
             <div className="font-semibold text-3xl">
               <p>OTP Verification</p>
             </div>
             <div className="flex flex-row text-sm font-medium text-gray-400">
-              <p>We have sent a code to your phone number</p>
+              <p>We have sent a code to {orderDetails.phoneNumber}</p>
             </div>
           </div>
 
           <div>
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col space-y-16">
+              <div className="flex flex-col space-y-8">
                 <div className="flex flex-row gap-1 sm:gap-2 items-center justify-between mx-auto w-full max-w-xs">
                   {otp.map((value, index) => (
                     <div key={index} className="w-10 h-10 md:h-14">
                       <input
-                        className="w-full h-full flex flex-col items-center justify-center text-center outline-none rounded-xl border border-gray-200 text-lg bg-white text-black focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                        className="w-full h-full flex flex-col items-center justify-center text-center outline-none rounded-xl border border-gray-300 text-lg bg-white text-black focus:bg-gray-50 focus:ring-1 ring-blue-700"
                         type="tel"
                         maxLength={1}
                         value={value}
@@ -154,7 +155,7 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
 
                   <button
                     type="submit"
-                    className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
+                    className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-500 hover:bg-blue-700 border-none text-white text-sm shadow-sm"
                     disabled={sending} // Disable button when loading
                   >
                     {sending ? "Verifying..." : "Verify number"}
@@ -166,7 +167,7 @@ const OTPVerification = ({ nextStep, orderDetails, store }) => {
                   <button
                     type="button"
                     onClick={handleResend}
-                    className="flex flex-row items-center text-blue-600"
+                    className="flex flex-row items-center text-blue-500"
                     disabled={sending} // Disable button when loading
                   >
                     {sending ? "Resending..." : "Resend"}

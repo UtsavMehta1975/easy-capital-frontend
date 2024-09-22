@@ -7,7 +7,7 @@ import SuccessMessage from "@/components/SuccessMessage";
 import React, { useEffect, useState } from "react";
 
 const ApplyPage = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [orderDetails, setOrderDetails] = useState({})
 
   useEffect(() => {
