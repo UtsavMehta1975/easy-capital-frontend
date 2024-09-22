@@ -15,9 +15,9 @@ const Navbar = () => {
 
     const toggleSidebar = () => {
         if (sidebarOpen) {
-            setBusinessLoanDropdownOpen(false)
-            setGstDropdownOpen(false)
-            setRegistrationDropdownOpen(false)
+            setBusinessLoanDropdownOpen(false);
+            setGstDropdownOpen(false);
+            setRegistrationDropdownOpen(false);
         }
         setSidebarOpen(!sidebarOpen);
     };
@@ -38,7 +38,6 @@ const Navbar = () => {
         }
     };
 
-    // Close sidebar when clicking outside of it
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -63,9 +62,7 @@ const Navbar = () => {
     return (
         <>
             <nav>
-                {/* Navbar */}
-                <nav className="bg-white fixed top-0 left-0 w-full z-20 shadow-lg flex items-center justify-between px-4 py-2">
-                    {/* Menu Icon + Logo */}
+                <nav className="bg-gradient-to-b from-blue-100 to-white fixed top-0 left-0 w-full z-20 shadow-lg flex items-center justify-between px-4 py-2 backdrop-filter backdrop-blur-md">
                     <div className="flex items-center lg:w-auto w-full justify-between flex-row-reverse lg:flex-row">
                         <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none lg:hidden">
                             <FiMenu size={24} />
@@ -79,70 +76,69 @@ const Navbar = () => {
                                     width={50}
                                     height={50}
                                 />
-                                <span className="text-2xl font-bold text-gray-800"><span className='text-blue-800'>Easy</span>Capital</span>
+                                <span className="text-2xl font-bold text-gray-800">
+                                    <span className='text-blue-800'>Easy</span>Capital
+                                </span>
                             </div>
                         </Link>
                     </div>
 
-                    {/* Links and Dropdowns */}
                     <div className="hidden lg:flex space-x-6 items-center">
                         <div className="relative" onMouseEnter={() => toggleDropdown('businessLoan')} onMouseLeave={() => toggleDropdown('businessLoan')} >
-                            <span className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium cursor-default">
+                            <span className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium cursor-default transition duration-300 transform hover:scale-105">
                                 Business Loan
                                 <span className={`ml-2 transform transition-transform ${businessLoanDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                             </span>
-                            <ul className={`absolute bg-white shadow-lg mt-2 space-y-2 transition-all duration-300 overflow-hidden text-sm w-max  ${businessLoanDropdownOpen ? 'border border-gray-200 max-h-96' : 'max-h-0'}`}>
+                            <ul className={`absolute bg-white shadow-lg mt-2 space-y-2 transition-all duration-300 overflow-hidden text-sm w-max ${businessLoanDropdownOpen ? 'border border-gray-200 max-h-96' : 'max-h-0'}`}>
                                 {Object.entries(NavLoanContent).map(([key, { title, link }]) => (
                                     <li key={key}>
-                                        <Link href={link} className="text-gray-800 hover:text-blue-500 block px-4 py-2">{title}</Link>
+                                        <Link href={link} className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">{title}</Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
                         <div className="relative" onMouseEnter={() => toggleDropdown('gst')} onMouseLeave={() => toggleDropdown('gst')} >
-                            <span className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium cursor-default">
+                            <span className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium cursor-default transition duration-300 transform hover:scale-105">
                                 GST Services
                                 <span className={`ml-2 transform transition-transform ${gstDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                             </span>
                             <ul className={`absolute bg-white shadow-lg mt-2 space-y-2 transition-all duration-300 overflow-hidden text-sm w-max ${gstDropdownOpen ? 'border border-gray-200 max-h-96' : 'max-h-0'}`}>
-                                <li><Link href="/gst-services/gst-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">GST Registration</Link></li>
-                                <li><Link href="/gst-services/gst-filling" className="text-gray-800 hover:text-blue-500 block px-4 py-2">GST filling</Link></li>
-                                <li><Link href="/gst-services/gst-registration-cancelation" className="text-gray-800 hover:text-blue-500 block px-4 py-2">GST Registration Cancelation</Link></li>
-                                <li><Link href="/gst-services/gst-annual-return" className="text-gray-800 hover:text-blue-500 block px-4 py-2">GST Annual Return</Link></li>
+                                <li><Link href="/gst-services/gst-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">GST Registration</Link></li>
+                                <li><Link href="/gst-services/gst-filling" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">GST Filling</Link></li>
+                                <li><Link href="/gst-services/gst-registration-cancelation" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">GST Registration Cancelation</Link></li>
+                                <li><Link href="/gst-services/gst-annual-return" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">GST Annual Return</Link></li>
                             </ul>
                         </div>
 
                         <div className="relative" onMouseEnter={() => toggleDropdown('registration')} onMouseLeave={() => toggleDropdown('registration')} >
-                            <span className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium cursor-default">
+                            <span className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium cursor-default transition duration-300 transform hover:scale-105">
                                 Registration Services
                                 <span className={`ml-2 transform transition-transform ${registrationDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                             </span>
-                            <ul className={`absolute bg-white shadow-lg mt-2 space-y-2 transition-all duration-300 overflow-hidden text-sm w-max  ${registrationDropdownOpen ? 'border border-gray-200 max-h-96' : 'max-h-0'}`}>
-                                <li><Link href="/registration-services/udhyam-certificate" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Udhyam Certificate</Link></li>
-                                <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">FSSAI Registration</Link></li>
-                                <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Halal Registration</Link></li>
-                                <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Trade License</Link></li>
-                                <li><Link href="/registration-services/startup-india" className="text-gray-800 hover:text-blue-500 block px-4 py-2">Startup India</Link></li>
+                            <ul className={`absolute bg-white shadow-lg mt-2 space-y-2 transition-all duration-300 overflow-hidden text-sm w-max ${registrationDropdownOpen ? 'border border-gray-200 max-h-96' : 'max-h-0'}`}>
+                                <li><Link href="/registration-services/udhyam-certificate" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">Udhyam Certificate</Link></li>
+                                <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">FSSAI Registration</Link></li>
+                                <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">Halal Registration</Link></li>
+                                <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">Trade License</Link></li>
+                                <li><Link href="/registration-services/startup-india" className="text-gray-800 hover:text-blue-500 block px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-100">Startup India</Link></li>
                             </ul>
                         </div>
 
-                        <Link href="/about-us" className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium">
+                        <Link href="/about-us" className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium transition duration-300 transform hover:scale-105">
                             About Us
                         </Link>
-                        <Link href="/contact-us" className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium">
+                        <Link href="/contact-us" className="text-gray-800 hover:text-blue-500 py-2 rounded-md text-md xl:text-lg font-medium transition duration-300 transform hover:scale-105">
                             Contact Us
                         </Link>
                     </div>
                 </nav>
 
-                {/* Sidebar (visible only on mobile) */}
                 <aside
                     ref={sidebarRef}
                     className={`fixed top-0 right-0 lg:hidden h-screen bg-white shadow-lg transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'} z-30 w-64`}
                 >
                     <div className="flex items-center justify-between px-4 pt-4 pb-1 md:py-4">
-                        {/* Sidebar Menu Icon + Logo */}
                         <div className="flex items-center w-full justify-end">
                             <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none">
                                 <FiMenu size={24} />
@@ -178,7 +174,7 @@ const Navbar = () => {
                                 </div>
                                 <ul className={`pl-4 space-y-2 transition-all duration-500 overflow-hidden ${gstDropdownOpen ? 'max-h-96' : 'max-h-0'}`}>
                                     <li><Link href="/gst-services/gst-registration" className="text-gray-800 hover:text-blue-500">GST Registration</Link></li>
-                                    <li><Link href="/gst-services/gst-filling" className="text-gray-800 hover:text-blue-500">GST filling</Link></li>
+                                    <li><Link href="/gst-services/gst-filling" className="text-gray-800 hover:text-blue-500">GST Filling</Link></li>
                                     <li><Link href="/gst-services/gst-registration-cancelation" className="text-gray-800 hover:text-blue-500">GST Registration Cancelation</Link></li>
                                     <li><Link href="/gst-services/gst-annual-return" className="text-gray-800 hover:text-blue-500">GST Annual Return</Link></li>
                                 </ul>
