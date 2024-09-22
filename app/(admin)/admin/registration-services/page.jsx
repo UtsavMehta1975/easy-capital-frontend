@@ -28,15 +28,14 @@ export default function RegistrationRequests() {
         }
     };
 
-    // Function to format date and time
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
-    // Function to export data to Excel
     const exportToExcel = () => {
         const worksheet = XLSX.utils.json_to_sheet(registrationRequests.map(req => ({
+            "Registration ID": req.registrationID,
             Name: req.name,
             Mobile: req.mobile,
             Email: req.email,
@@ -48,17 +47,14 @@ export default function RegistrationRequests() {
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Registration Requests");
 
-        // Generate and download the Excel file
         XLSX.writeFile(workbook, "registration_requests.xlsx");
     };
 
-    // Function to delete a registration request by ID
     const deleteRequest = async (id) => {
         try {
             await axiosInstance.delete(`/registeration-requests/delete/${id}`, {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            // Refresh the list after deletion
             setRegistrationRequests(registrationRequests.filter(req => req._id !== id));
         } catch (error) {
             console.error("Error deleting registration request", error);
@@ -90,6 +86,7 @@ export default function RegistrationRequests() {
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
+                                        <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">Registration ID</th>
                                         <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">Name</th>
                                         <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left text-gray-500">Mobile</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Email</th>
@@ -101,8 +98,11 @@ export default function RegistrationRequests() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {registrationRequests.map(({ _id, name, mobile, email, registerationServiceType, verified, createdAt, updatedAt }) => (
+                                    {registrationRequests.map(({ _id, name, mobile, email, registerationServiceType, verified, createdAt, updatedAt, registrationID }) => (
                                         <tr key={_id}>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{registrationID}</div>
+                                            </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <h2 className="font-medium text-gray-800">{name}</h2>
                                             </td>

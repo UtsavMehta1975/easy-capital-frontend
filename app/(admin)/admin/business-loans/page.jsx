@@ -22,34 +22,34 @@ export default function BusinessLoanRequests() {
             const { data } = await axiosInstance.get("/get-users", {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            setLoanRequests(data.filter(({ details }) => details));
+            const filteredRequests = data.filter(({ details }) => details);
+            // Sort data based on userId
+            const sortedRequests = filteredRequests.sort((a, b) => a.userId.localeCompare(b.userId));
+            setLoanRequests(sortedRequests);
         } catch (error) {
             console.error("Error fetching loan requests", error);
         }
     };
 
-    // Function to delete a loan request
     const deleteLoanRequest = async (userId) => {
         try {
             await axiosInstance.delete(`/user/delete/${userId}`, {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            // Update state to remove the deleted request from the list
             setLoanRequests(loanRequests.filter(request => request._id !== userId));
         } catch (error) {
             console.error("Error deleting loan request", error);
         }
     };
 
-    // Function to format date without time zone
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         return new Date(date).toLocaleDateString(undefined, options);
     };
 
-    // Function to export data to Excel
     const exportToExcel = () => {
         const formattedData = loanRequests.map(({ userId, name, mobile, email, details, createdAt, updatedAt }) => ({
+            "User ID": userId,
             Name: name,
             Mobile: mobile,
             Email: email,
@@ -58,11 +58,11 @@ export default function BusinessLoanRequests() {
             City: details.city || "",
             State: details.state || "",
             Pincode: details.pincode || "",
-            "PAN Number": details.pan || "",               // Show PAN number
-            "GST": details.gst || "",                      // Show GST availability
-            "GST Number": details.gstNumber || "",         // Show GST number
-            "Account Type": details.accountType || "",     // Show account type
-            "Business Age": details.businessAge || "",     // Show business age
+            "PAN Number": details.pan || "",
+            "GST": details.gst || "",
+            "GST Number": details.gstNumber || "",
+            "Account Type": details.accountType || "",
+            "Business Age": details.businessAge || "",
             "Created At": formatDate(createdAt),
             "Updated At": formatDate(updatedAt),
         }));
@@ -70,8 +70,6 @@ export default function BusinessLoanRequests() {
         const worksheet = XLSX.utils.json_to_sheet(formattedData);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Loan Requests");
-
-        // Export the Excel file
         XLSX.writeFile(workbook, "BusinessLoanRequests.xlsx");
     };
 
@@ -100,6 +98,7 @@ export default function BusinessLoanRequests() {
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
+                                        <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">User ID</th>
                                         <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">Name</th>
                                         <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left text-gray-500">Mobile</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Email</th>
@@ -119,8 +118,11 @@ export default function BusinessLoanRequests() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {loanRequests.map(({ _id, name, mobile, email, details, createdAt, updatedAt }) => (
+                                    {loanRequests.map(({ _id, userId, name, mobile, email, details, createdAt, updatedAt }) => (
                                         <tr key={_id}>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div className="text-gray-600">{userId}</div>
+                                            </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <h2 className="font-medium text-gray-800">{name}</h2>
                                             </td>

@@ -22,7 +22,7 @@ export default function GstRequests() {
             const { data } = await axiosInstance.get("/gst-requests/all", {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            setGstRequests(data.data);
+            setGstRequests(data.data.sort((a, b) => a.gstRequestID.localeCompare(b.gstRequestID)));
         } catch (error) {
             console.error("Error fetching GST requests", error);
         }
@@ -34,7 +34,6 @@ export default function GstRequests() {
             await axiosInstance.delete(`/gst-requests/delete/${id}`, {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            // Update state to remove the deleted request from the list
             setGstRequests(gstRequests.filter(request => request._id !== id));
         } catch (error) {
             console.error("Error deleting GST request", error);
@@ -50,18 +49,18 @@ export default function GstRequests() {
     // Function to export data to Excel
     const exportToExcel = () => {
         const worksheet = XLSX.utils.json_to_sheet(gstRequests.map(req => ({
+            "GST Request ID": req.gstRequestID,
             Name: req.name,
             Mobile: req.mobile,
             Email: req.email,
             "GST Service Type": req.gstServiceType,
             Verified: req.verified ? "Verified" : "Pending",
             "Created At": formatDate(req.createdAt),
-            "Updated At": formatDate(req.updatedAt)
+            "Updated At": formatDate(req.updatedAt),
         })));
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "GST Requests");
 
-        // Generate and download the Excel file
         XLSX.writeFile(workbook, "gst_requests.xlsx");
     };
 
@@ -90,6 +89,7 @@ export default function GstRequests() {
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
+                                        <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">GST Request ID</th>
                                         <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">Name</th>
                                         <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left text-gray-500">Mobile</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Email</th>
@@ -101,8 +101,11 @@ export default function GstRequests() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {gstRequests.map(({ _id, name, mobile, email, gstServiceType, verified, createdAt, updatedAt }) => (
+                                    {gstRequests.map(({ _id, name, mobile, email, gstServiceType, verified, createdAt, updatedAt, gstRequestID }) => (
                                         <tr key={_id}>
+                                            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <h2 className="font-medium text-gray-800">{gstRequestID}</h2>
+                                            </td>
                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <h2 className="font-medium text-gray-800">{name}</h2>
                                             </td>
