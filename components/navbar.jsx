@@ -148,11 +148,9 @@ const Navbar = () => {
                     <div className="px-4">
                         <ul className="space-y-4 text-left max-h-[600px] overflow-auto">
                             <li>
-                                <span onClick={toggleSidebar}>
-                                    <Link href="/" className="text-gray-800 hover:text-blue-500 block">
-                                        Home
-                                    </Link>
-                                </span>
+                                <Link href="/" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500 block">
+                                    Home
+                                </Link>
                             </li>
                             <li>
                                 <div onClick={() => toggleDropdown('businessLoan')} className="mb-3 flex justify-between items-center text-gray-800 hover:text-blue-500 cursor-pointer">
@@ -162,7 +160,7 @@ const Navbar = () => {
                                 <ul className={`pl-4 space-y-2 transition-all duration-500 overflow-hidden ${businessLoanDropdownOpen ? 'max-h-96' : 'max-h-0'}`}>
                                     {Object.entries(NavLoanContent).map(([key, { title, link }]) => (
                                         <li key={key}>
-                                            <Link href={link} className="text-gray-800 hover:text-blue-500 block">{title}</Link>
+                                            <Link href={link} onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500 block">{title}</Link>
                                         </li>
                                     ))}
                                 </ul>
@@ -173,10 +171,10 @@ const Navbar = () => {
                                     <span className={`transform transition-transform ${gstDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                                 </div>
                                 <ul className={`pl-4 space-y-2 transition-all duration-500 overflow-hidden ${gstDropdownOpen ? 'max-h-96' : 'max-h-0'}`}>
-                                    <li><Link href="/gst-services/gst-registration" className="text-gray-800 hover:text-blue-500">GST Registration</Link></li>
-                                    <li><Link href="/gst-services/gst-filling" className="text-gray-800 hover:text-blue-500">GST Filling</Link></li>
-                                    <li><Link href="/gst-services/gst-registration-cancelation" className="text-gray-800 hover:text-blue-500">GST Registration Cancelation</Link></li>
-                                    <li><Link href="/gst-services/gst-annual-return" className="text-gray-800 hover:text-blue-500">GST Annual Return</Link></li>
+                                    <li><Link href="/gst-services/gst-registration" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">GST Registration</Link></li>
+                                    <li><Link href="/gst-services/gst-filling" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">GST Filling</Link></li>
+                                    <li><Link href="/gst-services/gst-registration-cancelation" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">GST Registration Cancelation</Link></li>
+                                    <li><Link href="/gst-services/gst-annual-return" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">GST Annual Return</Link></li>
                                 </ul>
                             </li>
                             <li>
@@ -185,20 +183,21 @@ const Navbar = () => {
                                     <span className={`transform transition-transform ${registrationDropdownOpen ? 'rotate-180' : ''}`}>&#9662;</span>
                                 </div>
                                 <ul className={`pl-4 space-y-2 transition-all duration-500 overflow-hidden ${registrationDropdownOpen ? 'max-h-96' : 'max-h-0'}`}>
-                                    <li><Link href="/registration-services/udhyam-certificate" className="text-gray-800 hover:text-blue-500">Udhyam Certificate</Link></li>
-                                    <li><Link href="/registration-services/fssai-registration" className="text-gray-800 hover:text-blue-500">FSSAI Registration</Link></li>
-                                    <li><Link href="/registration-services/halal-registration" className="text-gray-800 hover:text-blue-500">Halal Registration</Link></li>
-                                    <li><Link href="/registration-services/trade-license" className="text-gray-800 hover:text-blue-500">Trade License</Link></li>
-                                    <li><Link href="/registration-services/startup-india" className="text-gray-800 hover:text-blue-500">Startup India</Link></li>
+                                    <li><Link href="/registration-services/udhyam-certificate" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">Udhyam Certificate</Link></li>
+                                    <li><Link href="/registration-services/fssai-registration" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">FSSAI Registration</Link></li>
+                                    <li><Link href="/registration-services/halal-registration" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">Halal Registration</Link></li>
+                                    <li><Link href="/registration-services/trade-license" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">Trade License</Link></li>
+                                    <li><Link href="/registration-services/startup-india" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500">Startup India</Link></li>
                                 </ul>
                             </li>
                             <li>
-                                <Link href="/about-us" className="text-gray-800 hover:text-blue-500 block">About Us</Link>
+                                <Link href="/about-us" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500 block">About Us</Link>
                             </li>
                             <li>
-                                <Link href="/contact-us" className="text-gray-800 hover:text-blue-500 block">Contact Us</Link>
+                                <Link href="/contact-us" onClick={toggleSidebar} className="text-gray-800 hover:text-blue-500 block">Contact Us</Link>
                             </li>
                         </ul>
+
                     </div>
                 </aside>
             </nav>
