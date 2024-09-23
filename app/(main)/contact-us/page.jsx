@@ -69,12 +69,12 @@ const Contact = () => {
     };
 
     return (
-        <div className="w-full py-20">
+        <div className="w-[90%] mx-auto py-20">
             <div className="container mx-auto">
                 <div className="flex flex-col lg:flex-row-reverse gap-10">
-                    <div className="lg:w-1/2">
-                        <h4 className="font-medium text-[1.5rem]">Have a question in your mind?</h4>
-                        <h1 className="font-semibold text-[2.8rem] text-blue-500">Get in touch with us</h1>
+                    <div className="lg:w-1/2 text-center lg:text-left">
+                        <h4 className="font-medium text-lg">Have a question in your mind?</h4>
+                        <h1 className="font-semibold text-3xl md:text-5xl mt-1 text-blue-500">Get in touch with us</h1>
                         <div className="flex flex-col gap-6 mt-10">
                             <div className="flex flex-col text-base">
                                 {errors.name.error && <span className="pl-1 text-[0.8rem] text-[#EE4B2B]">{errors.name.message}</span>}

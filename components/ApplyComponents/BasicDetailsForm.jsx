@@ -1,6 +1,5 @@
-"use client";
-import axiosInstance from "@/utils/axios";
 import React, { useState } from "react";
+import axiosInstance from "@/utils/axios";
 
 const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +12,7 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
 
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState("");
-  const [sending, setSending] = useState(false); // State to track loading
+  const [sending, setSending] = useState(false);
 
   const inputStyle = (error) =>
     `block w-full px-5 py-2.5 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:ring ${error
@@ -46,12 +45,17 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+
+    // Limit the length of mobile input
+    if (id === "mobile" && value.length > 12) {
+      return; // Prevent input if length exceeds 12 (10 digits + 2 for prefix)
+    }
+
     setFormData((prevFormData) => ({ ...prevFormData, [id]: value }));
     validateField(id, value);
   };
 
   const normalizePhoneNumber = (number) => {
-    // Remove leading '0' or '+91' if present
     return number.replace(/^(\+91|0)/, "");
   };
 
@@ -64,16 +68,15 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Function to send OTP
   const sendOTP = async () => {
     if (validate()) {
-      setSending(true); // Set loading state
+      setSending(true);
       try {
-        const normalizedMobile = normalizePhoneNumber(formData.mobile); // Normalize phone number
+        const normalizedMobile = normalizePhoneNumber(formData.mobile);
         const res = await axiosInstance.post("/login/send-otp", {
           name: formData.name,
           email: formData.email,
-          phoneNumber: normalizedMobile, // Use normalized phone number
+          phoneNumber: normalizedMobile,
           gender: formData.gender,
           amount: formData.loanAmount,
         });
@@ -90,14 +93,14 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
         console.error(e);
         setApiError("Failed to send OTP. Please try again.");
       } finally {
-        setSending(false); // Reset loading state
+        setSending(false);
       }
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendOTP(); // Call sendOTP on form submit
+    sendOTP();
   };
 
   return (
@@ -210,7 +213,7 @@ const BasicDetailsForm = ({ nextStep, setOrderDetails }) => {
           <button
             type="submit"
             className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-gray-600"
-            disabled={sending} // Disable button when loading
+            disabled={sending}
           >
             {sending ? "Sending..." : "Apply"}
           </button>

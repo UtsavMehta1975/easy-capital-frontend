@@ -35,7 +35,6 @@ const AccountInfoForm = ({ nextStep }) => {
     setErrors((prevErrors) => ({ ...prevErrors, [id]: errorMessages[id] }));
   };
 
-
   const handleChange = ({ target: { id, value } }) => {
     if (id === "pan" || id === "gstNumber") {
       value = value.toUpperCase();
@@ -44,7 +43,6 @@ const AccountInfoForm = ({ nextStep }) => {
     setFormData((prev) => ({ ...prev, [id]: value }));
     validateField(id, value);
   };
-
 
   const validate = () => {
     Object.keys(formData).forEach((field) => validateField(field, formData[field]));
@@ -56,27 +54,16 @@ const AccountInfoForm = ({ nextStep }) => {
     if (validate()) {
       try {
         const details = {
-          pan: formData.pan,
-          businessType: formData.businessType,
-          shopName: formData.shopName,
-          businessAge: formData.businessAge,
-          accountType: formData.accountType,
-          gst: formData.gst,
-          gstNumber: formData.gstNumber,
-          state: formData.state,
-          city: formData.city,
-          pincode: formData.pincode,
+          ...formData,
         };
 
         // Send PUT request to update user details
         const response = await axiosInstance.put('/update-details', { details }, {
           headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}` // Assuming you store the token in localStorage
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
           }
         });
 
-        // Handle response
-        // console.log('User details updated:', response.data);
         nextStep();
       } catch (error) {
         console.error('Error updating user details:', error);
@@ -100,7 +87,7 @@ const AccountInfoForm = ({ nextStep }) => {
             ...(formData.gst === "yes" ? [{ id: "gstNumber", label: "GST Number", type: "text", placeholder: "GSTIN" }] : []),
             { id: "state", label: "State", type: "text", placeholder: "State" },
             { id: "city", label: "City", type: "text", placeholder: "City" },
-            { id: "pincode", label: "Pincode", type: "text", placeholder: "Pincode" },
+            { id: "pincode", label: "Pincode", type: "text", placeholder: "Pincode", maxLength: 6 },
           ].map(({ id, label, type, ...rest }) => (
             <div key={id}>
               <label className="block text-sm text-gray-500" htmlFor={id}>{label}</label>
