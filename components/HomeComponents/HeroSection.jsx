@@ -15,7 +15,7 @@ const HeroSection = () => {
 
                 <Link href={"/apply"}>
                     <button className="px-5 py-2 mt-6 text-sm font-medium leading-5 text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none">
-                        Apply for a Loan Today
+                        Apply for Loan Today
                     </button>
                 </Link>
                 <p className="mt-3 text-sm text-gray-400">Quick approval, no hidden fees</p>
