@@ -2,6 +2,15 @@
 
 import Image from 'next/image';
 
+export const metadata = {
+    title: "About Us - EasyCapital",
+    description: "Discover Easy Capital Pvt. Ltd., your trusted partner for business loans and financial solutions. Learn why our customer-focused approach, expert support, and secure platform make us the ideal choice for entrepreneurs.",
+    icons: {
+        icon: "/favicon.ico",
+    }
+};
+
+
 const AboutUs = () => {
     const chooseUs = [
         {

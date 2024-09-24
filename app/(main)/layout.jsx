@@ -7,7 +7,7 @@ import TawkTo from "@/components/TawkTo";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
     title: "EasyCapital",
-    description: "Get your msme loans",
+    description: "Unlock the financial support your business deserves! Whether you're an MSME or an aspiring entrepreneur, we offer customized solutions to help you thrive. Start your journey to success today!",
     icons: {
         icon: "/favicon.ico",
     }

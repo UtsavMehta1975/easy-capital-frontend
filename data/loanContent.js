@@ -204,32 +204,31 @@ export const contentMap = {
 // loanContent.js
 export const NavLoanContent = {
     'unsecured-business-loan': {
-      title: "Unsecured Business Loan",
-      link: "/business-loan/unsecured-business-loan",
+        title: "Unsecured Business Loan",
+        link: "/business-loan/unsecured-business-loan",
     },
     'line-of-credit': {
-      title: "Line Of Credit",
-      link: "/business-loan/line-of-credit",
+        title: "Line Of Credit",
+        link: "/business-loan/line-of-credit",
     },
     'msme-loan': {
-      title: "MSME Loan",
-      link: "/business-loan/msme-loan",
+        title: "MSME Loan",
+        link: "/business-loan/msme-loan",
     },
     'secured-business-loan': {
-      title: "Secured Business Loan",
-      link: "/business-loan/secured-business-loan",
+        title: "Secured Business Loan",
+        link: "/business-loan/secured-business-loan",
     },
     'machinery-loan': {
-      title: "Machinery Loan",
-      link: "/business-loan/machinery-loan",
+        title: "Machinery Loan",
+        link: "/business-loan/machinery-loan",
     },
     'business-loan-for-women': {
-      title: "Business Loan for Women",
-      link: "/business-loan/business-loan-for-women",
+        title: "Business Loan for Women",
+        link: "/business-loan/business-loan-for-women",
     },
     'business-e-commerce-loan': {
-      title: "Business E-Commerce Loan",
-      link: "/business-loan/business-e-commerce-loan",
+        title: "Business E-Commerce Loan",
+        link: "/business-loan/business-e-commerce-loan",
     },
-  };
-  
+};
