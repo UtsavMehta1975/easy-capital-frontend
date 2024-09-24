@@ -65,7 +65,7 @@ const LoanCalculator = () => {
                   min: 12,
                   max: 60,
                   step: 1,
-                  unit: 'months',
+                  unit: 'M',
                   onChange: handleTenureChange,
                 },
                 {
@@ -132,7 +132,7 @@ const LoanCalculator = () => {
           <div className="flex flex-col items-center justify-around bg-white rounded-3xl p-10 text-center shadow-xl">
             <div>
               <p className="text-lg font-semibold text-gray-700">Estimated EMI</p>
-              <p className="text-4xl font-bold text-blue-600 my-4">
+              <p className="text-4xl font-bold text-blue-600 my-4 w-[200px] sm:w-auto">
                 ₹{formatNumber(Math.round(emi))}
               </p>
             </div>
