@@ -53,7 +53,7 @@ const LoanCalculator = () => {
                 {
                   label: 'Loan Amount',
                   value: loanAmount,
-                  min: 1000000,
+                  min: 100000,
                   max: 10000000,
                   step: 10000,
                   unit: '₹',
