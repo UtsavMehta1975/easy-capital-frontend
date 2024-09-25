@@ -26,7 +26,7 @@ const BasicContactForm = ({ service, nextStep, setOrderDetails, setRegisteration
         error = value ? "" : "Name is required.";
         break;
       case "mobile":
-        error = /^(\+91|0)?\d{10}$/.test(value) ? "" : "Mobile number must be 10 digits or start with +91 or 0.";
+        error = /^(\+91|0)?\d{10}$/.test(value) ? "" : "Mobile number must be 10 digits.";
         break;
       case "email":
         error = value ? "" : "Email is required.";
