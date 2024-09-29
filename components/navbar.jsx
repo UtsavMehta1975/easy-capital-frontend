@@ -27,18 +27,31 @@ const Navbar = () => {
     const toggleDropdown = (dropdownType) => {
         switch (dropdownType) {
             case 'businessLoan':
+                if (!businessLoanDropdownOpen) {
+                    setRegistrationDropdownOpen(false);
+                    setGstDropdownOpen(false);
+                }
                 setBusinessLoanDropdownOpen(!businessLoanDropdownOpen);
                 break;
             case 'registration':
+                if (!registrationDropdownOpen) {
+                    setBusinessLoanDropdownOpen(false);
+                    setGstDropdownOpen(false);
+                }
                 setRegistrationDropdownOpen(!registrationDropdownOpen);
                 break;
             case 'gst':
+                if (!gstDropdownOpen) {
+                    setBusinessLoanDropdownOpen(false);
+                    setRegistrationDropdownOpen(false);
+                }
                 setGstDropdownOpen(!gstDropdownOpen);
                 break;
             default:
                 break;
         }
     };
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
