@@ -22,14 +22,13 @@ export default function BusinessLoanRequests() {
             const { data } = await axiosInstance.get("/get-users", {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
-            const filteredRequests = data.filter(({ details }) => details);
-            // Sort data based on userId
-            const sortedRequests = filteredRequests.sort((a, b) => a.userId.localeCompare(b.userId));
+            const sortedRequests = data.sort((a, b) => a.userId.localeCompare(b.userId));
             setLoanRequests(sortedRequests);
         } catch (error) {
             console.error("Error fetching loan requests", error);
         }
     };
+
 
     const deleteLoanRequest = async (userId) => {
         try {
