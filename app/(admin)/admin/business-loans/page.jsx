@@ -22,12 +22,31 @@ export default function BusinessLoanRequests() {
             const { data } = await axiosInstance.get("/get-users", {
                 headers: { authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
             });
+
             const sortedRequests = data.sort((a, b) => a.userId.localeCompare(b.userId));
-            setLoanRequests(sortedRequests);
+
+            const normalizedRequests = sortedRequests.map((request) => ({
+                ...request,
+                details: {
+                    shopName: request.details?.shopName || "",
+                    businessType: request.details?.businessType || "",
+                    city: request.details?.city || "",
+                    state: request.details?.state || "",
+                    pincode: request.details?.pincode || "",
+                    pan: request.details?.pan || "",
+                    gst: request.details?.gst || "",
+                    gstNumber: request.details?.gstNumber || "",
+                    accountType: request.details?.accountType || "",
+                    businessAge: request.details?.businessAge || "",
+                }
+            }));
+
+            setLoanRequests(normalizedRequests);
         } catch (error) {
             console.error("Error fetching loan requests", error);
         }
     };
+
 
 
     const deleteLoanRequest = async (userId) => {
