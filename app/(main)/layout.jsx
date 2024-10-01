@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import TawkTo from "@/components/TawkTo";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
+                <GoogleAnalytics />
                 <Navbar />
                 {children}
                 <Footer />
