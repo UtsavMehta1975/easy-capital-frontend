@@ -1,4 +1,3 @@
-/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,11 +57,21 @@ body.no-scroll {
 /* Media queries for responsive design */
 @media (max-width: 600px) {
   .hero-section {
-    height: 100vh; /* Ensure it takes the full viewport height */
+    height: auto; /* Adjust to fit the content */
+    padding: 20px; /* Adjust padding as needed */
+  }
+
+  .hero-section .image-container {
+    display: none; /* Hide image on mobile */
+  }
+
+  .hero-section .text-container {
+    padding: 20px; /* Adjust padding as needed */
+    margin-bottom: 0; /* Ensure there's no excessive margin at the bottom */
   }
 
   .offerings-section {
-    margin-top: 100vh; /* Push it to the next page */
+    margin-top: 20px; /* Adjust as needed to control the space between sections */
   }
 
   /* Adjust other sections as needed */
