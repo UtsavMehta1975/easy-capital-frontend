@@ -3,22 +3,35 @@ import OTPVerification from "@/components/ApplyComponents/OTPVerification";
 import BasicContactForm from "@/components/GstComponents/BasicContactForm";
 import GSTOverview from "@/components/GstComponents/GSTOverview";
 import SuccessMessage from "@/components/SuccessMessage";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Added useEffect import
+import { useRouter } from "next/navigation"; // Added useRouter import
 
 const GstPage = ({ params }) => {
   const { service } = params;
   const [step, setStep] = useState(1);
-  const [orderDetails, setOrderDetails] = useState({})
-  const [gstId, setGstId] = useState("")
+  const [orderDetails, setOrderDetails] = useState({});
+  const [gstId, setGstId] = useState("");
+  const router = useRouter(); // Initialize useRouter
+
+  useEffect(() => {
+    // Any logic that needs to use router can go here
+  }, [router]); // Added router to dependency array
 
   const nextStep = () => {
-    setStep(step + 1)
-  }
+    setStep(step + 1);
+  };
 
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <BasicContactForm service={service} nextStep={nextStep} setOrderDetails={setOrderDetails} setGstId={setGstId} />;;
+        return (
+          <BasicContactForm
+            service={service}
+            nextStep={nextStep}
+            setOrderDetails={setOrderDetails}
+            setGstId={setGstId}
+          />
+        );
       case 2:
         return <OTPVerification nextStep={nextStep} orderDetails={orderDetails} />;
       case 3:

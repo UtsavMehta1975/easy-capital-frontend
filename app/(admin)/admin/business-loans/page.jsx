@@ -15,7 +15,7 @@ export default function BusinessLoanRequests() {
         } else {
             fetchLoanRequests();
         }
-    }, []);
+    }, [router]); // Added `router` to the dependency array to handle the warning
 
     const fetchLoanRequests = async () => {
         try {
@@ -46,8 +46,6 @@ export default function BusinessLoanRequests() {
             console.error("Error fetching loan requests", error);
         }
     };
-
-
 
     const deleteLoanRequest = async (userId) => {
         try {
@@ -205,3 +203,4 @@ export default function BusinessLoanRequests() {
         </section>
     );
 }
+

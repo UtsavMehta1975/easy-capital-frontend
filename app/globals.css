@@ -1,7 +1,7 @@
+/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 * {
   padding: 0;
@@ -9,9 +9,9 @@
   box-sizing: border-box;
 }
 
+/* Set background color to pure white */
 body {
-  background-image: radial-gradient(circle, #f0f0f0 20%, transparent 20%), radial-gradient(circle, #f0f0f0 20%, transparent 20%);
-  background-size: 20px 20px;
+  background-color: #ffffff; /* Pure white background */
 }
 
 @keyframes slideInFromTop {
@@ -53,4 +53,21 @@ body {
 
 body.no-scroll {
   overflow: hidden;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 600px) {
+  .hero-section {
+    height: 100vh; /* Ensure it takes the full viewport height */
+  }
+
+  .offerings-section {
+    margin-top: 100vh; /* Push it to the next page */
+  }
+
+  /* Adjust other sections as needed */
+  .partners, .testimonials, .faq-section {
+    padding: 10px;
+    margin: 0 auto;
+  }
 }

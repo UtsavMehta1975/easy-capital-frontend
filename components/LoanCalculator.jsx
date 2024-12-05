@@ -37,18 +37,17 @@ const LoanCalculator = () => {
   };
 
   return (
-    <div className="container mx-auto py-20 px-4">
-      <div className="bg-gradient-to-r from-blue-500 to-blue-300 shadow-xl rounded-3xl p-10">
-        <div className="grid gap-12 md:grid-cols-2">
+    <div className="container mx-auto py-6 px-4">
+      <div className="bg-gradient-to-r from-blue-500 to-blue-300 shadow-xl rounded-3xl p-8">
+        <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <h2 className="text-4xl font-bold text-white text-center mb-6 md:text-left">
+            <h2 className="text-4xl font-bold text-white text-center mb-4 md:text-left">
               Calculate Your Loan
             </h2>
-            <p className="text-gray-100 text-center mb-8 md:text-left">
-              Adjust the amount, tenure, and interest rate to calculate your monthly payments and
-              total amount payable.
+            <p className="text-gray-100 text-center mb-4 md:text-left">
+              Adjust the amount, tenure, and interest rate to calculate your monthly payments and total amount payable.
             </p>
-            <div className="space-y-10">
+            <div className="space-y-6">
               {[
                 {
                   label: 'Loan Amount',
@@ -143,8 +142,7 @@ const LoanCalculator = () => {
               </p>
             </div>
             <p className="text-sm text-gray-500 mt-4">
-              *Starting at 1% monthly reducing interest rate. Apply now to know your exact EMI &
-              interest rate.
+              *Starting at 1% monthly reducing interest rate. Apply now to know your exact EMI & interest rate.
             </p>
             <Link href="/apply">
               <button className="mt-6 bg-blue-600 text-white py-3 px-8 rounded-full font-semibold shadow-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition transform hover:scale-105">

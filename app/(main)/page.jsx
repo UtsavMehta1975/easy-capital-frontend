@@ -1,24 +1,42 @@
-import HeroSection from "@/components/HomeComponents/HeroSection";
-import HowItWorks from "@/components/HomeComponents/HowItWorks";
-import LoanCalculator from "@/components/LoanCalculator";
-import OfferingsSection from "@/components/HomeComponents/OfferingsSection";
-import Partners from "@/components/Partners";
-import WhyEasyCapital from "@/components/HomeComponents/WhyEasyCapital";
-import Image from "next/image";
-import FAQSection from "@/components/FAQSection";
-import Testimonials from "@/components/HomeComponents/Testimonials";
+'use client';
+
+import dynamic from 'next/dynamic'; // Import dynamic for dynamic imports
+
+// Dynamically import components with SSR disabled
+const HeroSection = dynamic(() => import('@/components/HomeComponents/HeroSection'), { ssr: false });
+const HowItWorks = dynamic(() => import('@/components/HomeComponents/HowItWorks'), { ssr: false });
+const LoanCalculator = dynamic(() => import('@/components/LoanCalculator'), { ssr: false });
+const OfferingsSection = dynamic(() => import('@/components/HomeComponents/OfferingsSection'), { ssr: false });
+const Partners = dynamic(() => import('@/components/Partners'), { ssr: false });
+const WhyEasyCapital = dynamic(() => import('@/components/HomeComponents/WhyEasyCapital'), { ssr: false });
+const FAQSection = dynamic(() => import('@/components/FAQSection'), { ssr: false });
+const Testimonials = dynamic(() => import('@/components/HomeComponents/Testimonials'), { ssr: false });
 
 export default function Home() {
   return (
-    <main className="min-h-screen max-w-[100vw] overflow-x-hidden ">
-      <HeroSection />
-      <OfferingsSection />
-      <LoanCalculator />
-      <HowItWorks />
-      <WhyEasyCapital />
-      <Partners />
-      <Testimonials />
-      <FAQSection />
+    <main className="min-h-screen max-w-[100vw] overflow-x-hidden">
+      <HeroSection className="hero-section" />
+      <div className="offerings-section">
+        <OfferingsSection />
+      </div>
+      <div className="mt-0 mb-0">
+        <LoanCalculator />
+      </div>
+      <div className="mt-0 mb-0">
+        <HowItWorks />
+      </div>
+      <div className="mt-0 mb-0">
+        <WhyEasyCapital />
+      </div>
+      <div className="mt-0 mb-0">
+        <Partners />
+      </div>
+      <div className="mt-0 mb-0">
+        <Testimonials />
+      </div>
+      <div className="mt-0 mb-0">
+        <FAQSection />
+      </div>
     </main>
   );
 }

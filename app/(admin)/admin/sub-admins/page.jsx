@@ -6,7 +6,7 @@ import axiosInstance from "@/utils/axios";
 export default function Dashboard() {
     const [subAdmins, setSubAdmins] = useState([]);
     const [userRole, setUserRole] = useState(null); // State to hold the user role
-    const router = useRouter();
+    const router = useRouter(); // Initialize useRouter
 
     useEffect(() => {
         const token = localStorage.getItem("jwtToken");
@@ -18,7 +18,7 @@ export default function Dashboard() {
             setUserRole(role);
             fetchSubAdmins();
         }
-    }, []);
+    }, [router]); // Added router to dependency array to handle the warning
 
     const fetchSubAdmins = async () => {
         try {
@@ -77,7 +77,7 @@ export default function Dashboard() {
                                         <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">Name</th>
                                         <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left text-gray-500">Mobile</th>
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">Role</th>
-                                        {userRole == "1" && ( // Show Actions column only if userRole is Admin (1)
+                                        {userRole === "1" && ( // Show Actions column only if userRole is Admin (1)
                                             <th scope="col" className="relative py-3.5 px-4 text-sm font-normal text-left text-gray-500">Actions</th>
                                         )}
                                     </tr>
@@ -96,7 +96,7 @@ export default function Dashboard() {
                                                     {role === -2 ? "Pending" : "Sub-admin"}
                                                 </div>
                                             </td>
-                                            {userRole == "1" && ( // Show Actions only if userRole is Admin (1)
+                                            {userRole === "1" && ( // Show Actions only if userRole is Admin (1)
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                     {role === -2 && (
                                                         <button

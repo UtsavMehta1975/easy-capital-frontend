@@ -4,8 +4,6 @@ import axiosInstance from '@/utils/axios';
 
 const SuccessMessage = ({ verificationMessage, gstId, registerationId }) => {
 
-
-
     useEffect(() => {
         if (gstId) {
             const verifyGstRequest = async (gstRequestId) => {
@@ -24,7 +22,7 @@ const SuccessMessage = ({ verificationMessage, gstId, registerationId }) => {
                     return { success: false, message: error.message };
                 }
             };
-            verifyGstRequest(gstId)
+            verifyGstRequest(gstId);
         } else if (registerationId) {
             const verifyRegisterationRequest = async (registerationRequestId) => {
                 try {
@@ -38,14 +36,13 @@ const SuccessMessage = ({ verificationMessage, gstId, registerationId }) => {
                     return { success: true, data: response.data };
 
                 } catch (error) {
-                    console.error('Failed to verify GST Request:', error.message);
+                    console.error('Failed to verify Registeration Request:', error.message);
                     return { success: false, message: error.message };
                 }
             };
-            verifyRegisterationRequest(registerationId)
+            verifyRegisterationRequest(registerationId);
         }
-    }, [])
-
+    }, [gstId, registerationId]); // Added gstId and registerationId to dependency array
 
     return (
         <>

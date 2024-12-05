@@ -24,11 +24,26 @@ const testimonials = [
         name: 'Prakash S',
         location: 'Uttar Pradesh, India'
     },
+    {
+        quote: `"After searching for weeks to secure a business loan, I stumbled upon Easy Capital, and I'm so glad I did. The platform made comparing loans from different banks and NBFCs straightforward, and the customer support team was always ready to assist. With their help, I got the perfect loan to renovate my restaurant. I highly recommend Easy Capital to any business owner looking for reliable loan options."`,
+        name: 'Utsav Mehta',
+        location: 'Uttrakhand, India'
+    },
+    {
+        quote: `"After searching for weeks to secure a business loan, I stumbled upon Easy Capital, and I'm so glad I did. The platform made comparing loans from different banks and NBFCs straightforward, and the customer support team was always ready to assist. With their help, I got the perfect loan to renovate my restaurant. I highly recommend Easy Capital to any business owner looking for reliable loan options."`,
+        name: 'Prakash S',
+        location: 'Uttar Pradesh, India'
+    },
+    {
+        quote: `"After searching for weeks to secure a business loan, I stumbled upon Easy Capital, and I'm so glad I did. The platform made comparing loans from different banks and NBFCs straightforward, and the customer support team was always ready to assist. With their help, I got the perfect loan to renovate my restaurant. I highly recommend Easy Capital to any business owner looking for reliable loan options."`,
+        name: 'Prakash S',
+        location: 'Uttar Pradesh, India'
+    },
 ];
 
 
 const Testimonials = () => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay({ delay: 2500 })]);
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay({ delay: 10000 })]);
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const onSelect = useCallback(() => {

@@ -1,16 +1,8 @@
-"use client"
-import React, { useEffect } from 'react';
+"use client";
+import React from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 
-const HowItWorks = () => {
-    useEffect(() => {
-        // Ensure this code runs on the client side
-        if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-            // Client-side specific code can go here
-            // Example: const element = document.getElementById('someElement');
-        }
-    }, []);
-
+const HowItWorksContent = () => {
     return (
         <div className="container flex flex-col lg:flex-row items-center gap-10 mx-auto my-5 mb-20">
             <div className='hidden lg:block lg:w-1/2 items-center bg-[#BFE0FF] rounded-lg'>
@@ -75,4 +67,4 @@ const HowItWorks = () => {
     );
 };
 
-export default HowItWorks;
+export default HowItWorksContent;
