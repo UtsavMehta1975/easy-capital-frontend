@@ -1,6 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic'; // Import dynamic for dynamic imports
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
 
 // Dynamically import components with SSR disabled
 const HeroSection = dynamic(() => import('@/components/HomeComponents/HeroSection'), { ssr: false });
@@ -13,6 +14,12 @@ const FAQSection = dynamic(() => import('@/components/FAQSection'), { ssr: false
 const Testimonials = dynamic(() => import('@/components/HomeComponents/Testimonials'), { ssr: false });
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      // Your client-side code here
+    }
+  }, []);
+
   return (
     <main className="min-h-screen max-w-[100vw] overflow-x-hidden">
       <HeroSection className="hero-section" />
