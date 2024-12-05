@@ -16,7 +16,7 @@ const Testimonials = dynamic(() => import('@/components/HomeComponents/Testimoni
 export default function Home() {
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      // Your client-side code here
+      // Client-side only code here
     }
   }, []);
 
