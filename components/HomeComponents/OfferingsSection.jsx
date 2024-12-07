@@ -51,7 +51,7 @@ const OfferingCard = ({ imgSrc, icon, title, description, link }) => {
 // Main OfferingsSection component
 const OfferingsSection = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-4">
+    <div className="max-w-6xl mx-auto px-4 py-4 md:py-8"> {/* Adjusted padding for mobile view */}
       <div className="flex flex-col items-center gap-4">
         <h2 className="font-bold text-5xl text-gray-800 mb-2">
           Our Offerings

@@ -11,7 +11,7 @@ const Partners = () => {
   ];
 
   return (
-    <section id='partners' className="w-full py-20 bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200">
+    <section id='partners' className="w-full py-2 bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-5xl font-bold text-blue-600 mb-4">Our Partners</h2>

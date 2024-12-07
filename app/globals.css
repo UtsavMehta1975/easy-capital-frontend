@@ -54,33 +54,98 @@ body.no-scroll {
   overflow: hidden;
 }
 
+/* Specific styling for the blue section */
+.blue-section {
+  background-color: #007bff; /* Blue background color */
+  padding: 10px 0 !important; /* Ensure padding is applied */
+  margin: 0 !important; /* Remove top margin */
+}
+
+/* Reduce gap between Our Partners and Success Stories */
+.blue-section .partners,
+.blue-section .success-stories,
+#partners .partners,
+#partners .success-stories {
+  margin: 0 !important; /* Remove all margins */
+  padding: 5px 0 !important; /* Minimize padding */
+}
+
+.blue-section .partners,
+#partners .partners {
+  margin-bottom: 10px !important; /* Further reduce bottom margin */
+}
+
+.blue-section .success-stories,
+#partners .success-stories {
+  margin-top: 5px !important; /* Further reduce top margin */
+  padding: 0 !important; /* Remove padding */
+}
+
+.jsx-75d87bca4228ff90.success-stories {
+  padding: 0 !important; /* Remove padding */
+}
+
 /* Media queries for responsive design */
 @media (max-width: 768px) {
   .hero-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px; /* Adjust padding as needed */
-    margin-bottom: 0; /* Ensure there's no excessive margin at the bottom */
+    padding: 20px !important; /* Ensure padding is applied */
+    margin-bottom: 0 !important; /* Ensure no margin at the bottom */
   }
 
   .hero-section .image-container {
-    display: none; /* Hide image permanently on mobile */
+    display: none !important; /* Hide image permanently on mobile */
   }
 
   .hero-section .text-container {
-    text-align: center; /* Center the text for better appearance */
-    width: 100%;
-    padding: 0 10px; /* Adjust padding as needed */
+    text-align: center !important; /* Center the text for better appearance */
+    width: 100% !important;
+    padding: 0 10px !important; /* Ensure padding is applied */
   }
 
   .offerings-section {
-    margin-top: 20px; /* Adjust as needed to control the space between sections */
+    margin-top: 20px !important; /* Ensure space between sections */
+    background-image: none !important; /* Ensure no background image */
   }
 
-  /* Adjust other sections as needed */
-  .partners, .testimonials, .faq-section {
-    padding: 10px;
-    margin: 0 auto;
+  .blue-section,
+  #partners {
+    padding: 10px 0 !important; /* Ensure padding is applied */
+    margin: 0 !important; /* Remove all margins */
+  }
+
+  .blue-section .partners, 
+  .blue-section .success-stories,
+  #partners .partners,
+  #partners .success-stories {
+    margin: 0 !important; /* Remove all margins */
+    padding: 5px 0 !important; /* Minimize padding */
+  }
+
+  .blue-section .partners,
+  #partners .partners {
+    margin-bottom: 10px !important; /* Further reduce the bottom margin */
+  }
+
+  .blue-section .success-stories,
+  #partners .success-stories {
+    margin-top: 5px !important; /* Further reduce the top margin */
+    padding: 0 !important; /* Remove padding */
+  }
+
+  .blue-section .partners,
+  .blue-section .testimonials,
+  .blue-section .faq-section,
+  #partners .partners,
+  #partners .testimonials,
+  #partners .faq-section {
+    padding: 10px !important; /* Ensure padding is applied */
+    margin: 0 auto !important; /* Ensure no extra margins */
+  }
+
+  .jsx-75d87bca4228ff90.success-stories {
+    padding: 0 !important; /* Remove padding */
   }
 }
