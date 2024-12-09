@@ -24,7 +24,7 @@ const HowItWorks = () => {
 
             <div className="lg:w-1/2 h-full flex flex-col justify-center my-auto max-w-[85%]">
                 <h4 className="font-medium text-[1.5rem]">How it works?</h4>
-                <h1 className="font-semibold text-[2.2rem] text-primary">Start Your Credit Approval</h1>
+                <h1 className="font-semibold text-[1.8rem] md:text-[2.2rem] text-primary">Start Your Credit Approval</h1>
 
                 <div className="mt-16 flex items-center gap-6">
                     <div className="h-[4rem] w-[4rem] shrink-0 rounded-full bg-blue-500 flex justify-center items-center">
