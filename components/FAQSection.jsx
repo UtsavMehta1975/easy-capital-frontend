@@ -12,7 +12,7 @@ const FAQSection = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="container px-6 py-10 mx-auto max-w-3xl">
-        <h1 className="text-2xl font-semibold text-black lg:text-3xl">FAQs</h1>
+        <h1 className="text-2xl font-semibold text-black lg:text-3xl text-left">FAQs</h1>
         <hr className="my-6 border-gray-200" />
 
         {faqData.map((item, index) => (
@@ -35,7 +35,7 @@ const FAQSection = () => {
                   d={activeIndex === index ? "M20 12H4" : "M12 4v16m8-8H4"}
                 />
               </svg>
-              <h1 className="mx-4 text-xl text-black">{item.question}</h1>
+              <h1 className="mx-4 text-xl text-black text-left">{item.question}</h1>
             </button>
 
             <div
@@ -43,7 +43,7 @@ const FAQSection = () => {
             >
               <div className="flex mt-4 ml-10">
                 <span className="border-l-2 border-blue-500"></span>
-                <p className="max-w-3xl px-4 text-black">{item.answer}</p>
+                <p className="max-w-3xl px-4 text-black text-left">{item.answer}</p>
               </div>
             </div>
             <hr className="my-4 border-gray-200" />
