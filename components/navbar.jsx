@@ -164,7 +164,7 @@ const Navbar = () => {
 
                 {/* Sidebar for mobile view */}
                 <aside ref={sidebarRef} className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg z-30 transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-b from-blue-100 to-white shadow">
+                    <div className="flex items-center justify-between px-4 py-5 bg-gradient-to-b from-blue-100 to-white shadow">
                         <span onClick={toggleSidebar} className="cursor-pointer text-gray-800 hover:text-blue-500 focus:outline-none">
                             <FiMenu size={24} />
                         </span>

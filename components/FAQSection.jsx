@@ -10,8 +10,8 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="container px-6 py-10 mx-auto max-w-3xl">
+    <div className="flex items-center justify-center bg-white md:py-5">
+      <div className="container px-6 py-10 mx-auto max-w-3xl md:pt-0">
         <h1 className="text-2xl font-semibold text-black lg:text-3xl text-left">FAQs</h1>
         <hr className="my-6 border-gray-200" />
 

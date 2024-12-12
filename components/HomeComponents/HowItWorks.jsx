@@ -24,9 +24,9 @@ const HowItWorks = () => {
 
             <div className="lg:w-1/2 h-full flex flex-col justify-center my-auto max-w-[85%]">
                 <h4 className="font-medium text-[1.5rem]">How it works?</h4>
-                <h1 className="font-semibold text-[1.8rem] md:text-[2.2rem] text-primary">Start Your Credit Approval</h1>
+                <h1 className="font-semibold text-[1.6rem] md:text-[2.5rem] text-primary">Start Your Credit Approval</h1>
 
-                <div className="mt-16 flex items-center gap-6">
+                <div className="mt-7 flex items-center gap-6">
                     <div className="h-[4rem] w-[4rem] shrink-0 rounded-full bg-blue-500 flex justify-center items-center">
                         <svg fill="#ffffff" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg" className="max-w-[3rem]">
                             <path d="M456.69,421.39,362.6,327.3a173.81,173.81,0,0,0,34.84-104.58C397.44,126.38,319.06,48,222.72,48S48,126.38,48,222.72s78.38,174.72,174.72,174.72A173.81,173.81,0,0,0,327.3,362.6l94.09,94.09a25,25,0,0,0,35.3-35.3ZM97.92,222.72a124.8,124.8,0,1,1,124.8,124.8A124.95,124.95,0,0,1,97.92,222.72Z"></path>
